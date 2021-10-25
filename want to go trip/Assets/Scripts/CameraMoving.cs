@@ -11,6 +11,7 @@ public class CameraMoving : MonoBehaviour
     public float rightEnd = 12f; // 카메라의 오른쪽 끝
     public float forwardEnd = 10f;
     public float backwardEnd = -20f; // 카메라의 뒤쪽 끝;
+    private float initialCameraZ;
 
     public float minFOV = 24f; // 최대 줌
     public float maxFOV = 55f; // 최소 줌
@@ -20,12 +21,13 @@ public class CameraMoving : MonoBehaviour
 
     private Camera mainCamera;
 
-    public float scrollSensitivity= 10f; // 스크롤 속도
+    public float scrollSensitivity = 10f; // 스크롤 속도
     void Start()
     {
         mainCamera = Camera.main;
         mainCamera.fieldOfView = 24f;
         distance = mainCamera.fieldOfView;
+        initialCameraZ = mainCamera.transform.position.z;
     }
 
     // Update is called once per frame
@@ -38,6 +40,12 @@ public class CameraMoving : MonoBehaviour
             Vector3 temp = transform.position;
             temp.x = playerX;
             transform.position = temp; // 카메라가 플레이의 x축 방향을 따라감
+        }
+        if (playerZ >= backwardEnd && playerZ <= forwardEnd) // 카메라의 z축 위치는 backwardEnd과 forwardEnd사이어야 함
+        {
+            Vector3 temp = transform.position;
+            temp.z = playerZ + initialCameraZ;
+            transform.position = temp; // 카메라가 플레이의 z축 방향을 따라감
         }
 
 
