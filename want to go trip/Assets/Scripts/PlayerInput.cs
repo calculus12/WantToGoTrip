@@ -1,18 +1,22 @@
-
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerInput : MonoBehaviour
+public class PlayerInput : MonoBehaviour // Manage player's input
 {
-    // 플레이어의 입력을 받는 스크립트
-    public float horizontalMoving { get; private set; } // 수평방향 (x축방향)
-    public float verticalMoving { get; private set; } // 수직방향 (z축 방향)
-    public bool space { get; private set; } // space 버튼 입력 확인 (도끼질)
+    public float mouseX { get; private set; }
+    public float mouseY { get; private set; }
+    public float x { get; private set; }
+    public float z { get; private set; }
+    public bool space { get; private set; }
 
     // Update is called once per frame
     void Update()
     {
-        horizontalMoving = Input.GetAxis("Horizontal");
-        verticalMoving = Input.GetAxis("Vertical");
-        space = Input.GetKeyDown(KeyCode.Space);
+        mouseX = Input.GetAxis("Mouse X");
+        mouseY = Input.GetAxis("Mouse Y");
+        x = Input.GetAxis("Horizontal");
+        z = Input.GetAxis("Vertical");
+        space = Input.GetButtonDown("Jump");
     }
 }
