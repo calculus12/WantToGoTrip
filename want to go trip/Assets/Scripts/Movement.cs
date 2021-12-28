@@ -33,11 +33,11 @@ public class Movement : MonoBehaviour
 
     public Animator animator;
 
-    private bool isGrounded;
+    public bool isGrounded { get; private set; }
 
-    private bool isUnderwater;
+    public bool isUnderwater { get; private set; }
 
-    private bool isSurface;
+    public bool isSurface { get; private set; }
 
     // Start is called before the first frame update
     void Start()
@@ -50,7 +50,7 @@ public class Movement : MonoBehaviour
     {
         isGrounded = Physics.CheckSphere(groundCheck.position, groundDistance, groundMask);
         isUnderwater = Physics.CheckSphere(waterCheck.position, 0.02f, waterMask);
-        isSurface = Physics.CheckSphere(waterCheck.position, 0.01f, surfaceMask);
+        isSurface = Physics.CheckSphere(waterCheck.position, 0.05f, surfaceMask);
 
         Vector3 direction = transform.right * input.x + transform.forward * input.z;
 

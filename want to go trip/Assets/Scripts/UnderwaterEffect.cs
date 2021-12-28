@@ -22,7 +22,7 @@ public class UnderwaterEffect : MonoBehaviour
 
     private bool isPlayingUnderwaterSound;
 
-    public float underwaterFocusDistance = 0.5f;
+    public float underwaterFocusDistance = 1f;
     
     // Effects
     private Vignette vg;
