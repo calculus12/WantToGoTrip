@@ -19,7 +19,7 @@ public class PlayerInput : MonoBehaviour // Manage player's input
         mouseY = Input.GetAxis("Mouse Y");
         x = Input.GetAxis("Horizontal");
         z = Input.GetAxis("Vertical");
-        space = Input.GetButtonDown("Jump");
+        space = Input.GetButton("Jump");
         leftClick = Input.GetMouseButton(0);
     }
 }
