@@ -53,16 +53,16 @@
     <UnityVersion>2020.3.25f1</UnityVersion>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Assets\Scripts\PlayerSound.cs" />
     <Compile Include="Assets\LowPolyWater_Pack\Scripts\LowPolyWater.cs" />
     <Compile Include="Assets\Scripts\PlayerInput.cs" />
     <Compile Include="Assets\Scripts\Movement.cs" />
     <Compile Include="Assets\Scripts\UnderwaterEffect.cs" />
+    <Compile Include="Assets\Scripts\PlayerLumbering.cs" />
     <Compile Include="Assets\Scripts\MoveByOcean.cs" />
     <Compile Include="Assets\Scripts\MouseLook.cs" />
     <Compile Include="Assets\Scripts\EnvironmentScript.cs" />
     <Compile Include="Assets\Scripts\CameraMoving.cs" />
-    <Compile Include="Assets\PlayerLumbering.cs" />
-    <Compile Include="Assets\PlayerSound.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\StylizedWater2\Shaders\Libraries\Lighting.hlsl" />
