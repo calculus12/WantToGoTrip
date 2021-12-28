@@ -12,9 +12,15 @@ public class UnderwaterEffect : MonoBehaviour
 
     public Volume post;
 
+    public AudioSource oceanSound;
+
+    public AudioSource underwaterSound;
+
     public Color underwaterColor;
 
-    public bool underWater;
+    private bool underWater;
+
+    private bool isPlayingUnderwaterSound;
 
     public float underwaterFocusDistance = 0.5f;
     
@@ -49,12 +55,26 @@ public class UnderwaterEffect : MonoBehaviour
             vg.intensity.value = 0.35f;
             dof.focusDistance.value = underwaterFocusDistance;
             ca.colorFilter.value = underwaterColor;
+            if (!isPlayingUnderwaterSound)
+            {
+                
+                oceanSound.Pause();
+                underwaterSound.Play();
+                isPlayingUnderwaterSound = true;
+            }
         }
         else
         {
             vg.intensity.value = 0.292f;
             dof.focusDistance.value = 5f;
             ca.colorFilter.value = Color.white;
+            if(isPlayingUnderwaterSound)
+            {
+                oceanSound.Play();
+                underwaterSound.Pause();
+                isPlayingUnderwaterSound = false;
+            }
+            
         }
     }
 }

@@ -10,6 +10,8 @@ public class PlayerInput : MonoBehaviour // Manage player's input
     public float z { get; private set; }
     public bool space { get; private set; }
 
+    public bool leftClick { get; private set; }
+
     // Update is called once per frame
     void Update()
     {
@@ -18,5 +20,6 @@ public class PlayerInput : MonoBehaviour // Manage player's input
         x = Input.GetAxis("Horizontal");
         z = Input.GetAxis("Vertical");
         space = Input.GetButtonDown("Jump");
+        leftClick = Input.GetMouseButton(0);
     }
 }

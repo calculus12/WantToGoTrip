@@ -10,12 +10,11 @@ public class Movement : MonoBehaviour
 
     public CharacterController controller;
 
-    public Rigidbody rigidbody;
-
     public float speed = 12f;
     public float underwaterSpeed = 6f;
 
     public float gravityAcceleration = -9.81f;
+    public float buoyancy = 2f;
 
     private Vector3 velocity; // for gravity
 
@@ -30,12 +29,15 @@ public class Movement : MonoBehaviour
 
     public LayerMask groundMask;
     public LayerMask waterMask;
+    public LayerMask surfaceMask;
 
     public Animator animator;
 
     private bool isGrounded;
 
     private bool isUnderwater;
+
+    private bool isSurface;
 
     // Start is called before the first frame update
     void Start()
@@ -48,6 +50,7 @@ public class Movement : MonoBehaviour
     {
         isGrounded = Physics.CheckSphere(groundCheck.position, groundDistance, groundMask);
         isUnderwater = Physics.CheckSphere(waterCheck.position, 0.02f, waterMask);
+        isSurface = Physics.CheckSphere(waterCheck.position, 0.01f, surfaceMask);
 
         Vector3 direction = transform.right * input.x + transform.forward * input.z;
 
@@ -79,24 +82,31 @@ public class Movement : MonoBehaviour
 
             controller.Move(velocity * Time.deltaTime);
         }
-
-        if (!isUnderwater && !isGrounded)
+        else if (!isUnderwater && !isGrounded)
         {
-            velocity.y += gravityAcceleration * Time.deltaTime;
+            // gravity force
+            if (velocity.y >= -60f) // terminal speed
+                velocity.y += gravityAcceleration * Time.deltaTime;
 
             controller.Move(direction * speed * Time.deltaTime);
 
             controller.Move(velocity * Time.deltaTime);
         }
-
-        if (isUnderwater)
+        else if (isUnderwater)
         {
             Vector3 underwaterDirection = firstPersonCamera.transform.right * input.x +
                                           firstPersonCamera.transform.forward * input.z;
 
-            controller.Move(underwaterDirection * speed * Time.deltaTime);
+            if (isSurface)
+            {
+                if (input.space)
+                {
+                    velocity.y = Mathf.Sqrt(jumpHeight * -2f * gravityAcceleration);
+                    controller.Move(velocity * Time.deltaTime);
+                }
+            }
 
-            
+            controller.Move(underwaterDirection * speed * Time.deltaTime);
         }
     }
 }
