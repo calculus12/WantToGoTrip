@@ -22,9 +22,10 @@ public class Movement : MonoBehaviour
 
     public float jumpHeight = 3f;
 
-    public float underwaterJumpForce = 1f;
+    public float underwaterJumpHeight = 1f;
 
-    public Transform groundCheck;
+    public Transform groundCheck1;
+    public Transform groundCheck2;
     public Transform waterCheck;
 
     public float groundDistance = 0.4f;
@@ -52,7 +53,8 @@ public class Movement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        isGrounded = Physics.CheckSphere(groundCheck.position, groundDistance, groundMask);
+        isGrounded = Physics.CheckSphere(groundCheck1.position, groundDistance, groundMask) |
+            Physics.CheckSphere(groundCheck2.position, groundDistance, groundMask);
         isUnderwater = Physics.CheckSphere(waterCheck.position, 0.02f, waterMask);
         isSurface = Physics.CheckSphere(waterCheck.position, 0.1f, surfaceMask);
 
@@ -122,7 +124,7 @@ public class Movement : MonoBehaviour
             {
                 if (input.space)
                 {
-                    velocity.y = Mathf.Sqrt(jumpHeight * -2f * gravityAcceleration);
+                    velocity.y = Mathf.Sqrt(underwaterJumpHeight * -2f * gravityAcceleration);
                     controller.Move(velocity * Time.deltaTime);
                 }
             }
