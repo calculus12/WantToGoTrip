@@ -28,7 +28,7 @@ public class PlayerLumbering : MonoBehaviour
 
     private IEnumerator LumberRoutine()
     {
-        Debug.Log("진입성공");
+        Debug.Log("aa");
         isLumbering = true;
         animator.SetTrigger("lumber");
         yield return new WaitForSeconds(lumberingTime);

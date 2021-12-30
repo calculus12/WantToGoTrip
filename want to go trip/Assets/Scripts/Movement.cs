@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Movement : MonoBehaviour
 {
-    public PlayerInput input;
+    private PlayerInput input;
 
     public Camera firstPersonCamera;
 
@@ -34,7 +34,7 @@ public class Movement : MonoBehaviour
     public LayerMask waterMask;
     public LayerMask surfaceMask;
 
-    public Animator animator;
+    private Animator animator;
 
     public bool isGrounded { get; private set; }
 
@@ -47,7 +47,8 @@ public class Movement : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-
+        animator = GetComponent<Animator>();
+        input = GetComponent<PlayerInput>();
     }
 
     // Update is called once per frame
