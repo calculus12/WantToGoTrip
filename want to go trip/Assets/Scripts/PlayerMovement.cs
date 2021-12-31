@@ -42,6 +42,8 @@ public class PlayerMovement : MonoBehaviour
         animator = GetComponent<Animator>();
         input = GetComponent<PlayerInput>();
         state = GetComponent<PlayerState>();
+        Cursor.lockState = CursorLockMode.Locked;
+       
     }
     
     void Update()
@@ -51,6 +53,7 @@ public class PlayerMovement : MonoBehaviour
 
         if (state.isGrounded)
         {
+            state.isFalling = false;
             // prevent increasing velocity by gravity while player is grounded
             if (velocity.y < 0)
             {
@@ -83,16 +86,26 @@ public class PlayerMovement : MonoBehaviour
 
             controller.Move(velocity * Time.deltaTime); // y-axis movement (move caused by gravity)
         }
-        else if (!state.isUnderwater && !state.isGrounded)
+        else if (!state.isUnderwater && !state.isGrounded) // if player is falling
         {
             state.isFalling = true;
             // gravity force
             if (velocity.y >= -60f) // terminal speed
                 velocity.y += gravityAcceleration * Time.deltaTime;
 
-            controller.Move(direction * speedWhileJump * Time.deltaTime);
+            if (direction.magnitude >= 0.1f) // if player is moving
+            {
+                float targetAngle = Mathf.Atan2(direction.x, direction.z) * Mathf.Rad2Deg
+                                    + camTransform.eulerAngles.y;
+                float angle = Mathf.SmoothDampAngle(transform.eulerAngles.y, targetAngle, ref turnSmoothVelocity,
+                    turnSmoothTime);
+                transform.rotation = Quaternion.Euler(0f, angle, 0f);
 
-            controller.Move(velocity * Time.deltaTime);
+                Vector3 moveDir = Quaternion.Euler(0f, targetAngle, 0f) * Vector3.forward;
+                controller.Move(moveDir.normalized * speed * Time.deltaTime);
+            }
+
+                controller.Move(velocity * Time.deltaTime);
         }
         else if (state.isUnderwater)
         {
