@@ -6,10 +6,11 @@ public class PlayerInput : MonoBehaviour // Manage player's input
 {
     public float mouseX { get; private set; }
     public float mouseY { get; private set; }
-    public float x { get; private set; }
-    public float z { get; private set; }
+    public float horizontal { get; private set; }
+    public float vertical { get; private set; }
     public bool space { get; private set; }
 
+    public bool ctrl { get; private set; }
     public bool leftClick { get; private set; }
 
     // Update is called once per frame
@@ -17,9 +18,10 @@ public class PlayerInput : MonoBehaviour // Manage player's input
     {
         mouseX = Input.GetAxis("Mouse X");
         mouseY = Input.GetAxis("Mouse Y");
-        x = Input.GetAxis("Horizontal");
-        z = Input.GetAxis("Vertical");
+        horizontal = Input.GetAxis("Horizontal");
+        vertical = Input.GetAxis("Vertical");
         space = Input.GetButton("Jump");
+        ctrl = Input.GetKey(KeyCode.LeftControl);
         leftClick = Input.GetMouseButton(0);
     }
 }

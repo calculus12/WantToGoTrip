@@ -4,14 +4,14 @@ using UnityEngine;
 
 public class PlayerSound : MonoBehaviour
 {
-    Movement state;
+    PlayerState state;
     public AudioSource audioPlayer;
     public AudioClip splashSound;
 
     private bool afterGrounded;
     void Start()
     {
-        state = GetComponent<Movement>();    
+        state = GetComponent<PlayerState>();    
     }
 
     // Update is called once per frame
