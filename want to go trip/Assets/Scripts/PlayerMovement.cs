@@ -61,7 +61,7 @@ public class PlayerMovement : MonoBehaviour
             }
 
             // jump
-            if (input.space)
+            if (state.canJump && input.space)
             {
                 velocity.y = Mathf.Sqrt(jumpHeight * -2f * gravityAcceleration);
             }

@@ -11,6 +11,7 @@ public class PlayerState : MonoBehaviour
     public Transform waterCheck;
 
     public float groundDistance = 0.4f;
+    public float jumpCheckDistance = 0.1f;
 
     // mask that distinguish ground, water, water surface
     public LayerMask groundMask;
@@ -19,6 +20,8 @@ public class PlayerState : MonoBehaviour
     
     //property that represent player's state
     public bool isGrounded { get; private set; }
+    
+    public bool canJump { get; private set; }
 
     public bool isUnderwater { get; private set; }
 
@@ -30,6 +33,8 @@ public class PlayerState : MonoBehaviour
     {
         isGrounded = Physics.CheckSphere(groundCheck1.position, groundDistance, groundMask) |
                      Physics.CheckSphere(groundCheck2.position, groundDistance, groundMask);
+        canJump = Physics.CheckSphere(groundCheck1.position, jumpCheckDistance, groundMask) |
+                  Physics.CheckSphere(groundCheck2.position, jumpCheckDistance, groundMask);
         isUnderwater = Physics.CheckSphere(waterCheck.position, 0.02f, waterMask);
         isSurface = Physics.CheckSphere(waterCheck.position, 0.1f, surfaceMask);
     }
