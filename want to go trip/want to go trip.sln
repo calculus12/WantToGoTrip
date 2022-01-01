@@ -1,36 +1,27 @@
 ﻿
-Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Assembly-CSharp", "Assembly-CSharp.csproj", "{AC6D6AD0-54ED-1436-CDFC-5BDEB7727AE3}"
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Assembly-CSharp", "Assembly-CSharp.csproj", "{d06a6dac-ed54-3614-cdfc-5bdeb7727ae3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "sc.stylizedwater2.runtime", "sc.stylizedwater2.runtime.csproj", "{6436E7AB-8961-B763-43FE-FAA54C295BB4}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "sc.stylizedwater2.runtime", "sc.stylizedwater2.runtime.csproj", "{abe73664-6189-63b7-43fe-faa54c295bb4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "sc.stylizedwater2.editor", "sc.stylizedwater2.editor.csproj", "{C27D7629-ED13-BCC6-3D2E-BBDD13935B0E}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "sc.stylizedwater2.editor", "sc.stylizedwater2.editor.csproj", "{29767dc2-13ed-c6bc-3d2e-bbdd13935b0e}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Assembly-CSharp-Editor", "Assembly-CSharp-Editor.csproj", "{8EB6935D-1C57-C67A-4157-EBC3B0EF9F0F}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Assembly-CSharp-Editor", "Assembly-CSharp-Editor.csproj", "{5d93b68e-571c-7ac6-4157-ebc3b0ef9f0f}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
-		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{AC6D6AD0-54ED-1436-CDFC-5BDEB7727AE3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{AC6D6AD0-54ED-1436-CDFC-5BDEB7727AE3}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{AC6D6AD0-54ED-1436-CDFC-5BDEB7727AE3}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{AC6D6AD0-54ED-1436-CDFC-5BDEB7727AE3}.Release|Any CPU.Build.0 = Release|Any CPU
-		{6436E7AB-8961-B763-43FE-FAA54C295BB4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{6436E7AB-8961-B763-43FE-FAA54C295BB4}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{6436E7AB-8961-B763-43FE-FAA54C295BB4}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{6436E7AB-8961-B763-43FE-FAA54C295BB4}.Release|Any CPU.Build.0 = Release|Any CPU
-		{C27D7629-ED13-BCC6-3D2E-BBDD13935B0E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{C27D7629-ED13-BCC6-3D2E-BBDD13935B0E}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{C27D7629-ED13-BCC6-3D2E-BBDD13935B0E}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{C27D7629-ED13-BCC6-3D2E-BBDD13935B0E}.Release|Any CPU.Build.0 = Release|Any CPU
-		{8EB6935D-1C57-C67A-4157-EBC3B0EF9F0F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{8EB6935D-1C57-C67A-4157-EBC3B0EF9F0F}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{8EB6935D-1C57-C67A-4157-EBC3B0EF9F0F}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{8EB6935D-1C57-C67A-4157-EBC3B0EF9F0F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{d06a6dac-ed54-3614-cdfc-5bdeb7727ae3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{d06a6dac-ed54-3614-cdfc-5bdeb7727ae3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{abe73664-6189-63b7-43fe-faa54c295bb4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{abe73664-6189-63b7-43fe-faa54c295bb4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{29767dc2-13ed-c6bc-3d2e-bbdd13935b0e}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{29767dc2-13ed-c6bc-3d2e-bbdd13935b0e}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5d93b68e-571c-7ac6-4157-ebc3b0ef9f0f}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5d93b68e-571c-7ac6-4157-ebc3b0ef9f0f}.Debug|Any CPU.Build.0 = Debug|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

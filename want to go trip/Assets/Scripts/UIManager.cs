@@ -17,10 +17,11 @@ public class UIManager : MonoBehaviour
         }
     }
 
-    public void PlayGame()
+    public float audioVolume = 1f;
+
+    void Awake()
     {
-
+        DontDestroyOnLoad(gameObject);
     }
-
 
 }
