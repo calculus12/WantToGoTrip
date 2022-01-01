@@ -4,10 +4,9 @@ using UnityEngine;
 
 public class StartMenu : MonoBehaviour
 {
-    [SerializeField]
-    GameObject setting;
+    [HideInInspector] public AudioSource[] audioList;
 
-    public AudioSource[] audioList;
+    [SerializeField] GameObject setting;
 
     void Awake()
     {

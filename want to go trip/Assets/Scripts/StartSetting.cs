@@ -6,14 +6,9 @@ using TMPro;
 
 public class StartSetting : MonoBehaviour
 {
-    [SerializeField]
-    StartMenu menu;
- 
-    [SerializeField]
-    TextMeshProUGUI volumeRate;
-
-    [SerializeField]
-    Slider audioController;
+    [SerializeField] StartMenu menu;
+    [SerializeField] TextMeshProUGUI volumeRate;
+    [SerializeField] Slider audioController;
 
     void Awake()
     {

@@ -6,14 +6,9 @@ using TMPro;
 
 public class InGameSetting : MonoBehaviour
 {
-    [SerializeField]
-    InGameMenu menu;
-
-    [SerializeField]
-    TextMeshProUGUI volumeRate;
-
-    [SerializeField]
-    Slider audioController;
+    [SerializeField] InGameMenu menu;
+    [SerializeField] TextMeshProUGUI volumeRate;
+    [SerializeField] Slider audioController;
 
     void Awake()
     {

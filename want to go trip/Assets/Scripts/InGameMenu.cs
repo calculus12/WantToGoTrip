@@ -5,13 +5,11 @@ using UnityEngine.SceneManagement;
 
 public class InGameMenu : MonoBehaviour
 {
-    [SerializeField]
-    GameObject menu;
+    [HideInInspector] public AudioSource[] audioList;
 
-    [SerializeField]
-    GameObject setting;
-
-    public AudioSource[] audioList;
+    [SerializeField] GameObject menu;
+    [SerializeField] GameObject setting;
+    [SerializeField] GameObject gameOverUI;
 
     void Awake()
     {
@@ -25,7 +23,8 @@ public class InGameMenu : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetButtonDown("Cancel"))
+        // Open and close in-game menu
+        if (Input.GetButtonDown("Cancel") && !gameOverUI.activeSelf)
         {
             if (menu.activeSelf)
             {
@@ -43,6 +42,7 @@ public class InGameMenu : MonoBehaviour
     public void OnClickContinue()
     {
         menu.SetActive(false);
+        Cursor.lockState = CursorLockMode.Locked;
     }
 
     public void OnClickRestart()

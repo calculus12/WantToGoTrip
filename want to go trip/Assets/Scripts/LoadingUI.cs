@@ -8,7 +8,11 @@ using TMPro;
 
 public class LoadingUI : MonoBehaviour
 {
-    private static LoadingUI l_instance;
+    [SerializeField] CanvasGroup canvasGroup;
+    [SerializeField] Image progressBar;
+    [SerializeField] TextMeshProUGUI progressRate;
+    static LoadingUI l_instance;
+    string nextScene;
 
     public static LoadingUI instance
     {
@@ -29,17 +33,6 @@ public class LoadingUI : MonoBehaviour
             return l_instance;
         }
     }
-
-    [SerializeField]
-    CanvasGroup canvasGroup;
-
-    [SerializeField]
-    Image progressBar;
-
-    [SerializeField]
-    TextMeshProUGUI progressRate;
-
-    string nextScene;
 
     void Awake()
     {

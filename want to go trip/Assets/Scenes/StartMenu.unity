@@ -394,8 +394,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 532c6e08c5a93064faca4c26051e24a5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  setting: {fileID: 932926432}
   audioList: []
+  setting: {fileID: 932926432}
 --- !u!1 &192130143 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1024560205301068169, guid: 6d38f28c8f53eb64383bc1dc0b9c8fe4, type: 3}
@@ -1164,7 +1164,7 @@ GameObject:
   - component: {fileID: 901562503}
   - component: {fileID: 901562502}
   m_Layer: 5
-  m_Name: Panel
+  m_Name: BackGround
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2073,7 +2073,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4162099290271450, guid: e7c92673993d9c24b9a4ae3684fccc34, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.01194484
+      value: 0.008776304
       objectReference: {fileID: 0}
     - target: {fileID: 4162099290271450, guid: e7c92673993d9c24b9a4ae3684fccc34, type: 3}
       propertyPath: m_LocalPosition.z
@@ -2393,7 +2393,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 77d107049b26a334581ca92c37cc767b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  audioVolume: 1
 --- !u!4 &2104297144
 Transform:
   m_ObjectHideFlags: 0
