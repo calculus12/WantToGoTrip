@@ -33,6 +33,8 @@ public class PlayerState : MonoBehaviour
     
     public bool isSailing { get; set; }
 
+    public bool isLumbering { get; set; }
+
     void Update()
     {
         isGrounded = Physics.CheckSphere(groundCheck1.position, groundDistance, groundMask) |

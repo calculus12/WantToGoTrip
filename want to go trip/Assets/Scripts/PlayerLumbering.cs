@@ -6,14 +6,18 @@ public class PlayerLumbering : MonoBehaviour
 {
     Animator animator;
     PlayerInput input;
+    PlayerState state;
+    
+    public Transform axeRaycastStart;
 
     public float lumberingTime = 1f;
-    private bool isLumbering;
+    public float axeDistance = 0.3f;
     
     void Start()
     {
         animator = GetComponent<Animator>();
         input = GetComponent<PlayerInput>();
+        state = GetComponent<PlayerState>();
     }
 
 
@@ -21,16 +25,25 @@ public class PlayerLumbering : MonoBehaviour
     {
         if (input.leftClick)
         {
-            if (!isLumbering)
+            if (!state.isLumbering)
                 StartCoroutine(LumberRoutine());
         }
     }
 
     private IEnumerator LumberRoutine()
     {
-        isLumbering = true;
+        state.isLumbering = true;
         animator.SetTrigger("lumber");
+
+        yield return new WaitForSeconds(0.5f);
+        Ray ray = new Ray(axeRaycastStart.position, axeRaycastStart.forward);
+        RaycastHit hit;
+        Debug.DrawRay(axeRaycastStart.position, axeRaycastStart.forward, Color.red, 0.5f);
+        if (Physics.Raycast(ray, out hit, axeDistance))
+        {
+            Debug.Log(hit.collider.name);
+        }
         yield return new WaitForSeconds(lumberingTime);
-        isLumbering = false;
+        state.isLumbering = false;
     }
 }

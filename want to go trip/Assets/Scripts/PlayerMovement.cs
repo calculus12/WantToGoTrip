@@ -27,6 +27,7 @@ public class PlayerMovement : MonoBehaviour
 
     private Vector3 velocity; // for gravity
     private float underwaterY = 0f;
+    private bool jumpAnimationPlayed = false;
     
     // jump height when player jumps on water surface
     public float underwaterJumpHeight = 1f;
@@ -68,7 +69,7 @@ public class PlayerMovement : MonoBehaviour
         {
             state.isFalling = false;
             underwaterY = 0f;
-            Debug.Log(RaftController.velocity);
+            //Debug.Log(RaftController.velocity);
             controller.Move(RaftController.velocity * Time.deltaTime);
             // prevent increasing velocity by gravity while player is grounded
             if (velocity.y < 0)
@@ -77,9 +78,15 @@ public class PlayerMovement : MonoBehaviour
             }
 
             // jump
+            
             if (state.canJump && input.space)
             {
                 velocity.y = Mathf.Sqrt(jumpHeight * -2f * gravityAcceleration);
+                if (!jumpAnimationPlayed)
+                {
+                    animator.SetTrigger("jump");
+                    jumpAnimationPlayed = true;
+                }
             }
 
             // if player is moving then, play walk animation and make move
@@ -105,6 +112,7 @@ public class PlayerMovement : MonoBehaviour
         else if (!state.isUnderwater && !state.isGrounded) // if player is falling
         {
             state.isFalling = true;
+            jumpAnimationPlayed = false;
             underwaterY = 0f;
             // gravity force
             if (velocity.y >= -60f) // terminal speed
@@ -172,6 +180,11 @@ public class PlayerMovement : MonoBehaviour
                 if (input.space)
                 {
                     velocity.y = Mathf.Sqrt(underwaterJumpHeight * -2f * gravityAcceleration);
+                    if (!jumpAnimationPlayed)
+                    {
+                        animator.SetTrigger("jump");
+                        jumpAnimationPlayed = true;
+                    }
                     controller.Move(velocity * Time.deltaTime);
                 }
             }

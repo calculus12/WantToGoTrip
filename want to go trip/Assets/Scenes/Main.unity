@@ -1712,6 +1712,36 @@ Transform:
   m_Father: {fileID: 1054406128}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &305179718
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 305179719}
+  m_Layer: 0
+  m_Name: AxeRaycast
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &305179719
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 305179718}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0.418, z: 0.042}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 835968279}
+  m_RootOrder: 11
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &310907782
 GameObject:
   m_ObjectHideFlags: 0
@@ -2283,7 +2313,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a9d5e77658f402b48b9f197b40ca1b79, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  axeRaycastStart: {fileID: 305179719}
   lumberingTime: 1
+  axeDistance: 0.3
 --- !u!114 &498715817
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3594,7 +3626,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 822323410}
-  m_LocalRotation: {x: 0.31428495, y: -0.008784261, z: 0.002908257, w: 0.9492836}
+  m_LocalRotation: {x: 0.31429043, y: -0.006746719, z: 0.0022336764, w: 0.9493003}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -3950,6 +3982,7 @@ Transform:
   - {fileID: 835968323}
   - {fileID: 1107600398}
   - {fileID: 1828543823}
+  - {fileID: 305179719}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -11545,7 +11578,6 @@ MonoBehaviour:
   maxVelocity: 10
   damping: 0.3
   forwardVelocity: 8
-  friction: 0.01
   sailingTime: 0.2
   rotationUnit: 5
   rotationSpeed: 1
