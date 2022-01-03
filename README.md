@@ -2,7 +2,7 @@
 
 Game Development Project
 
-Participant
+Participant :
 
 김남주
 김동현 
