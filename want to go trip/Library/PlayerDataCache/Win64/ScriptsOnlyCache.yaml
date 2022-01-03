@@ -7,6 +7,8 @@ ScriptsOnlyBuild:
     - PlayerMovement
     - PlayerSound
     - PlayerState
+    - RaftController
+    - SailingControl
     - UnderwaterEffect
     Cinemachine.dll:
     - Cinemachine.CinemachineBrain
@@ -69,6 +71,7 @@ ScriptsOnlyBuild:
     - TMPro.TMP_Settings
     - TMPro.TMP_SpriteAsset
     - TMPro.TMP_StyleSheet
+    - TMPro.TextMeshProUGUI
     UnityEditor.TestRunner.dll:
     - UnityEditor.TestTools.TestRunner.Api.CallbacksHolder
     - UnityEditor.TestTools.TestRunner.TestListCacheData
@@ -146,144 +149,148 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 1690}
     - Class: 114
-      Script: {instanceID: 1948}
+      Script: {instanceID: 1698}
     - Class: 114
-      Script: {instanceID: 2004}
+      Script: {instanceID: 1754}
     - Class: 114
-      Script: {instanceID: 2096}
+      Script: {instanceID: 1846}
     - Class: 114
-      Script: {instanceID: 2142}
+      Script: {instanceID: 1892}
     - Class: 114
-      Script: {instanceID: 2218}
+      Script: {instanceID: 1968}
     - Class: 114
-      Script: {instanceID: 2260}
+      Script: {instanceID: 2010}
     - Class: 114
-      Script: {instanceID: 2386}
+      Script: {instanceID: 2136}
     - Class: 114
-      Script: {instanceID: 2462}
+      Script: {instanceID: 2212}
     - Class: 114
-      Script: {instanceID: 2512}
+      Script: {instanceID: 2262}
     - Class: 114
-      Script: {instanceID: 2664}
+      Script: {instanceID: 2414}
     - Class: 114
-      Script: {instanceID: 2754}
+      Script: {instanceID: 2504}
     - Class: 114
-      Script: {instanceID: 2778}
+      Script: {instanceID: 2528}
     - Class: 114
-      Script: {instanceID: 2900}
+      Script: {instanceID: 2650}
     - Class: 114
-      Script: {instanceID: 2968}
+      Script: {instanceID: 2718}
     - Class: 114
-      Script: {instanceID: 3034}
+      Script: {instanceID: 2784}
     - Class: 114
-      Script: {instanceID: 3430}
+      Script: {instanceID: 3180}
     - Class: 114
-      Script: {instanceID: 3500}
+      Script: {instanceID: 3250}
     - Class: 114
-      Script: {instanceID: 3558}
+      Script: {instanceID: 3308}
     - Class: 114
-      Script: {instanceID: 3580}
+      Script: {instanceID: 3330}
     - Class: 114
-      Script: {instanceID: 3640}
+      Script: {instanceID: 3390}
     - Class: 114
-      Script: {instanceID: 3764}
+      Script: {instanceID: 3514}
     - Class: 114
-      Script: {instanceID: 3880}
+      Script: {instanceID: 3630}
     - Class: 114
-      Script: {instanceID: 3972}
+      Script: {instanceID: 3722}
     - Class: 114
-      Script: {instanceID: 4178}
+      Script: {instanceID: 3928}
     - Class: 114
-      Script: {instanceID: 4272}
+      Script: {instanceID: 4022}
     - Class: 114
-      Script: {instanceID: 4298}
+      Script: {instanceID: 4048}
     - Class: 114
-      Script: {instanceID: 4404}
+      Script: {instanceID: 4154}
     - Class: 114
-      Script: {instanceID: 4432}
+      Script: {instanceID: 4182}
     - Class: 114
-      Script: {instanceID: 4572}
+      Script: {instanceID: 4292}
     - Class: 114
-      Script: {instanceID: 4654}
+      Script: {instanceID: 4324}
     - Class: 114
-      Script: {instanceID: 4662}
+      Script: {instanceID: 4406}
     - Class: 114
-      Script: {instanceID: 4802}
+      Script: {instanceID: 4414}
     - Class: 114
-      Script: {instanceID: 4866}
+      Script: {instanceID: 4556}
     - Class: 114
-      Script: {instanceID: 4940}
+      Script: {instanceID: 4620}
     - Class: 114
-      Script: {instanceID: 5016}
+      Script: {instanceID: 4694}
     - Class: 114
-      Script: {instanceID: 5164}
+      Script: {instanceID: 4770}
     - Class: 114
-      Script: {instanceID: 5216}
+      Script: {instanceID: 4918}
     - Class: 114
-      Script: {instanceID: 5268}
+      Script: {instanceID: 4970}
     - Class: 114
-      Script: {instanceID: 5338}
+      Script: {instanceID: 5022}
     - Class: 114
-      Script: {instanceID: 5356}
+      Script: {instanceID: 5092}
     - Class: 114
-      Script: {instanceID: 5408}
+      Script: {instanceID: 5110}
     - Class: 114
-      Script: {instanceID: 5420}
+      Script: {instanceID: 5160}
     - Class: 114
-      Script: {instanceID: 5504}
+      Script: {instanceID: 5172}
+    - Class: 114
+      Script: {instanceID: 5256}
+    - Class: 114
+      Script: {instanceID: 5360}
+    - Class: 114
+      Script: {instanceID: 5362}
+    - Class: 114
+      Script: {instanceID: 5382}
+    - Class: 114
+      Script: {instanceID: 5434}
     - Class: 114
       Script: {instanceID: 5608}
     - Class: 114
-      Script: {instanceID: 5610}
+      Script: {instanceID: 5636}
     - Class: 114
-      Script: {instanceID: 5630}
+      Script: {instanceID: 5720}
     - Class: 114
-      Script: {instanceID: 5854}
+      Script: {instanceID: 5758}
     - Class: 114
-      Script: {instanceID: 5882}
+      Script: {instanceID: 5768}
+    - Class: 114
+      Script: {instanceID: 5892}
+    - Class: 114
+      Script: {instanceID: 5902}
+    - Class: 114
+      Script: {instanceID: 5960}
     - Class: 114
       Script: {instanceID: 5966}
     - Class: 114
-      Script: {instanceID: 6004}
+      Script: {instanceID: 6060}
     - Class: 114
-      Script: {instanceID: 6014}
+      Script: {instanceID: 6096}
     - Class: 114
       Script: {instanceID: 6136}
     - Class: 114
       Script: {instanceID: 6204}
     - Class: 114
-      Script: {instanceID: 6210}
+      Script: {instanceID: 6216}
     - Class: 114
-      Script: {instanceID: 6304}
+      Script: {instanceID: 6324}
     - Class: 114
-      Script: {instanceID: 6340}
+      Script: {instanceID: 6444}
     - Class: 114
-      Script: {instanceID: 6380}
+      Script: {instanceID: 6556}
     - Class: 114
-      Script: {instanceID: 6448}
+      Script: {instanceID: 6606}
     - Class: 114
-      Script: {instanceID: 6460}
+      Script: {instanceID: 7180}
     - Class: 114
-      Script: {instanceID: 6568}
+      Script: {instanceID: 7476}
     - Class: 114
-      Script: {instanceID: 6690}
+      Script: {instanceID: 7628}
     - Class: 114
-      Script: {instanceID: 6802}
-    - Class: 114
-      Script: {instanceID: 6852}
-    - Class: 114
-      Script: {instanceID: 7428}
-    - Class: 114
-      Script: {instanceID: 7724}
-    - Class: 114
-      Script: {instanceID: 7876}
-    - Class: 114
-      Script: {instanceID: 7974}
+      Script: {instanceID: 7726}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
-      Script: {instanceID: 0}
-    - Class: 136
       Script: {instanceID: 0}
     - Class: 137
       Script: {instanceID: 0}
@@ -292,6 +299,8 @@ ScriptsOnlyBuild:
     - Class: 157
       Script: {instanceID: 0}
     - Class: 196
+      Script: {instanceID: 0}
+    - Class: 205
       Script: {instanceID: 0}
     - Class: 213
       Script: {instanceID: 0}
@@ -424,7 +433,7 @@ ScriptsOnlyBuild:
     className: CinemachineCameraOffset
   - hash:
       serializedVersion: 2
-      Hash: e7b64d2f8a3bd432c8f15dc047550c38
+      Hash: 5ae58f4c1f9237f225b6606407fbc749
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: PlayerState
@@ -946,6 +955,12 @@ ScriptsOnlyBuild:
     className: GroupWeightManipulator
   - hash:
       serializedVersion: 2
+      Hash: c4a517b742229e961255c26b0d3ed101
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: SailingControl
+  - hash:
+      serializedVersion: 2
       Hash: 91c66736e3507bbd3c15a9b02abea21b
     assemblyName: Unity.RenderPipelines.Universal.Runtime.dll
     namespaceName: UnityEngine.Rendering.Universal
@@ -1042,7 +1057,7 @@ ScriptsOnlyBuild:
     className: UniversalRenderPipelineEditorResources
   - hash:
       serializedVersion: 2
-      Hash: f20ea7773ec09afbd3ea8b7068f15718
+      Hash: 0a7e1aae375227568b2709af907088c8
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: PlayerMovement
@@ -1168,12 +1183,6 @@ ScriptsOnlyBuild:
     className: WarpTextExample
   - hash:
       serializedVersion: 2
-      Hash: afc5b93a7b192de2dcb3832fe35a5c7e
-    assemblyName: Assembly-CSharp.dll
-    namespaceName: 
-    className: MoveByOcean
-  - hash:
-      serializedVersion: 2
       Hash: 300fd99066f8c288e85f5e81ce65fe34
     assemblyName: Unity.TextMeshPro.dll
     namespaceName: TMPro
@@ -1244,6 +1253,12 @@ ScriptsOnlyBuild:
     assemblyName: Unity.Animation.Rigging.dll
     namespaceName: UnityEngine.Animations.Rigging
     className: MultiReferentialConstraint
+  - hash:
+      serializedVersion: 2
+      Hash: 1c39ae1cefe10315bcdfdd050d6b3730
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: RaftController
   - hash:
       serializedVersion: 2
       Hash: 63bdc2cf3273aa9bf650350f19d2af61
@@ -1460,12 +1475,6 @@ ScriptsOnlyBuild:
     assemblyName: Unity.RenderPipelines.Core.Runtime.dll
     namespaceName: UnityEngine.Rendering.UI
     className: DebugUIHandlerCanvas
-  - hash:
-      serializedVersion: 2
-      Hash: 794e920f9a91a82bdbd5b2e030c9dcca
-    assemblyName: Assembly-CSharp.dll
-    namespaceName: 
-    className: EnvironmentScript
   - hash:
       serializedVersion: 2
       Hash: 4fd8bf02e3089425d3502e26c44ba31a
@@ -1805,5 +1814,4 @@ ScriptsOnlyBuild:
   platform: 19
   scenePathNames:
   - Assets/Scenes/Main.unity
-  playerPath: "C:/Users/kimna/OneDrive/\uBC14\uD0D5 \uD654\uBA74/Want to go trip/ocean/want
-    to go trip.exe"
+  playerPath: C:/Users/kimna/Desktop/Built Game/aa/want to go trip.exe

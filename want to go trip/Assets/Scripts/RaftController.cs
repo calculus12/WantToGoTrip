@@ -10,62 +10,74 @@ public class RaftController : MonoBehaviour
     public PlayerState playerState;
     public Transform PlayerTransform;
 
-    public float maxVelocity = 10f;
+    public float maxVelocity = 5f;
+    public float damping = 1f;
     public float forwardVelocity = 3f;
-    public float friction = 1f;
     public float sailingTime = 0.5f;
-    public float rotationSpeed = 5f;
+    public float rotationUnit = 5f;
+    public float rotationSpeed = 1f;
 
-    private Vector3 _velocity;
+    public static Vector3 velocity; //raft's velocity
     private float timeAfterOneSailing = 0f;
-    private Vector3 targetAngle;
+    private Vector3 targetAngle = Vector3.zero;
+    private Vector3 targetVelocity;
 
     private void Start()
     {
         raftTransform = GetComponent<Transform>();
-        _velocity = Vector3.zero;
+        velocity = Vector3.zero;
     }
 
-    private void Update() // need to make movement of raft more smoothly
+    private void Update()
     {
+        // rotate raft
+        raftTransform.rotation = Quaternion.Slerp(raftTransform.rotation, Quaternion.Euler(targetAngle)
+            , Time.deltaTime * rotationSpeed);
+
+        // move raft forward
+        if (Mathf.Abs(velocity.magnitude) >= forwardVelocity / 2)
+            targetVelocity = Vector3.zero;
+        velocity = Vector3.Lerp(velocity, targetVelocity, Time.deltaTime * damping);
+        raftTransform.position += velocity * Time.deltaTime; // move forward;
+
         if (!playerState.isSailing)
         {
-            return;
+            return; // if player's state is not sailing then player can't control raft
         }
 
-        timeAfterOneSailing += Time.deltaTime;
+        // while player is sailing
 
+        if (timeAfterOneSailing <= sailingTime)
+            timeAfterOneSailing += Time.deltaTime;
+
+        // rotation
+        if (input.a)
+        {
+            targetAngle.y -= rotationUnit;
+        }
+        else if (input.d)
+        {
+            targetAngle.y += rotationUnit;
+        }
+
+        // move forward
         if (input.w && timeAfterOneSailing >= sailingTime)
         {
-            if (_velocity.magnitude <= maxVelocity)
+            if (targetVelocity.magnitude <= maxVelocity)
             {
-                _velocity += raftTransform.forward * forwardVelocity; // it is not smooth
+                targetVelocity += raftTransform.forward * forwardVelocity;
             }
             timeAfterOneSailing = 0f;
         }
 
-        if (input.a)
-        {
-            targetAngle.y -= rotationSpeed;
-        }
-        else if (input.d)
-        {
-            targetAngle.y += rotationSpeed;
-        }
 
+        //if (Mathf.Abs(velocity.magnitude) >= forwardVelocity / 2)
+        //    targetVelocity = Vector3.zero;
 
-        if (_velocity.magnitude >= 0.1f)
-        {
-            _velocity -= raftTransform.forward * friction;
-        }
+        //velocity = Vector3.Lerp(velocity, targetVelocity, Time.deltaTime * damping);
+        //raftTransform.position += velocity * Time.deltaTime;
 
-
-        raftTransform.position += _velocity * Time.deltaTime;
-        raftTransform.rotation = Quaternion.Slerp(raftTransform.rotation, Quaternion.Euler(targetAngle) 
-            , 0.1f);
-        PlayerTransform.position += _velocity * Time.deltaTime;
-        PlayerTransform.rotation = Quaternion.Slerp(PlayerTransform.rotation, Quaternion.Euler(targetAngle)
-            , 0.1f);
+        PlayerTransform.SetPositionAndRotation(raftTransform.position, raftTransform.rotation);
     }
 
 }

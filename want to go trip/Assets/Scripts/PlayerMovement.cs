@@ -16,16 +16,17 @@ public class PlayerMovement : MonoBehaviour
     public float turnSmoothVelocity;
     
     public float speed = 12f; // player's speed
+    public float jumpHeight = 3f;
     public float speedWhileJump = 8f; // player's speed while jump
     public float underwaterSpeed = 6f; // player's speed under the water
     public float underwaterUpDownSpeed = 2f; // player's speed when player moves up or down
 
     public float gravityAcceleration = -9.81f;
     public float buoyancy = 15f;
+    public float underwaterYDamping = 0.5f;
 
     private Vector3 velocity; // for gravity
-
-    public float jumpHeight = 3f;
+    private float underwaterY = 0f;
     
     // jump height when player jumps on water surface
     public float underwaterJumpHeight = 1f;
@@ -43,7 +44,6 @@ public class PlayerMovement : MonoBehaviour
         input = GetComponent<PlayerInput>();
         state = GetComponent<PlayerState>();
         Cursor.lockState = CursorLockMode.Locked;
-       
     }
     
     void Update()
@@ -67,6 +67,9 @@ public class PlayerMovement : MonoBehaviour
         if (state.isGrounded)
         {
             state.isFalling = false;
+            underwaterY = 0f;
+            Debug.Log(RaftController.velocity);
+            controller.Move(RaftController.velocity * Time.deltaTime);
             // prevent increasing velocity by gravity while player is grounded
             if (velocity.y < 0)
             {
@@ -102,6 +105,7 @@ public class PlayerMovement : MonoBehaviour
         else if (!state.isUnderwater && !state.isGrounded) // if player is falling
         {
             state.isFalling = true;
+            underwaterY = 0f;
             // gravity force
             if (velocity.y >= -60f) // terminal speed
                 velocity.y += gravityAcceleration * Time.deltaTime;
@@ -148,13 +152,20 @@ public class PlayerMovement : MonoBehaviour
 
             if (!state.isFalling && input.space)
             {
-                controller.Move(Vector3.up * underwaterUpDownSpeed * Time.deltaTime);
+                //controller.Move(Vector3.up * underwaterUpDownSpeed * Time.deltaTime);
+                velocity.y += underwaterUpDownSpeed;
             }
 
             if (!state.isFalling && input.ctrl)
             {
-                controller.Move(Vector3.down * underwaterUpDownSpeed * Time.deltaTime);
+                velocity.y -= underwaterUpDownSpeed;
             }
+
+            if (Mathf.Abs(underwaterY) >= underwaterUpDownSpeed / 2)
+                velocity.y = 0f;
+
+            underwaterY = Mathf.Lerp(underwaterY, velocity.y, Time.deltaTime * underwaterYDamping);
+            controller.Move(Vector3.up * underwaterY * Time.deltaTime);
 
             if (state.isSurface && !state.isFalling)
             {
