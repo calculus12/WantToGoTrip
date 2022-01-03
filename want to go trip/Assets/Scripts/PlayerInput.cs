@@ -9,9 +9,12 @@ public class PlayerInput : MonoBehaviour // Manage player's input
     public float horizontal { get; private set; }
     public float vertical { get; private set; }
     public bool space { get; private set; }
-
+    public bool f { get; private set; }
     public bool ctrl { get; private set; }
     public bool leftClick { get; private set; }
+    public bool w { get; private set; }
+    public bool a { get; private set; }
+    public bool d { get; private set; }
 
     // Update is called once per frame
     void Update()
@@ -23,5 +26,9 @@ public class PlayerInput : MonoBehaviour // Manage player's input
         space = Input.GetButton("Jump");
         ctrl = Input.GetKey(KeyCode.LeftControl);
         leftClick = Input.GetMouseButton(0);
+        f = Input.GetKeyDown(KeyCode.F);
+        w = Input.GetKeyDown(KeyCode.W);
+        a = Input.GetKeyDown(KeyCode.A);
+        d = Input.GetKeyDown(KeyCode.D);
     }
 }

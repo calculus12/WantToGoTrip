@@ -1,10 +1,12 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Security.Cryptography;
 using UnityEngine;
 
 public class PlayerState : MonoBehaviour
 {
-    
+
     // transform(position) for check whether player is grounded or in water
     public Transform groundCheck1;
     public Transform groundCheck2;
@@ -28,6 +30,8 @@ public class PlayerState : MonoBehaviour
     public bool isSurface { get; private set; }
 
     public bool isFalling { get; set; }
+    
+    public bool isSailing { get; set; }
 
     void Update()
     {

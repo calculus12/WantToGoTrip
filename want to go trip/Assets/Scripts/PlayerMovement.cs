@@ -49,6 +49,19 @@ public class PlayerMovement : MonoBehaviour
     void Update()
     {
 
+        if (state.isSailing)
+        {
+            animator.SetBool("isWalking", false);
+            
+            /*
+             * need to add sailing animation
+             */
+            
+            return; // player cannnot move while sailing
+            
+        }
+            
+
         Vector3 direction = new Vector3(input.horizontal, 0f, input.vertical).normalized;
 
         if (state.isGrounded)
@@ -105,7 +118,7 @@ public class PlayerMovement : MonoBehaviour
                 controller.Move(moveDir.normalized * speed * Time.deltaTime);
             }
 
-                controller.Move(velocity * Time.deltaTime);
+            controller.Move(velocity * Time.deltaTime);
         }
         else if (state.isUnderwater)
         {
