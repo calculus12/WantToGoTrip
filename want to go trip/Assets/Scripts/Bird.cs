@@ -4,10 +4,10 @@ using UnityEngine;
 
 public class Bird : MonoBehaviour
 {
+    public float speed;
     void Update()
     {
-        // "-Vector3.up" can be changed when apply asset
-        transform.Translate(-Vector3.up * EnvironmentManager.instance.birdSpeed * Time.deltaTime);
+        transform.Translate(Vector3.forward * speed * Time.deltaTime);
 
         if (transform.position.z < EnvironmentManager.instance.endPosZ)
         {

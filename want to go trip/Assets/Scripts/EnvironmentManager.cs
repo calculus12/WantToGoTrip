@@ -5,7 +5,6 @@ using UnityEngine;
 public class EnvironmentManager : MonoBehaviour
 {
     public float endPosZ;
-    public float birdSpeed;
     public float birdFlyingHeightMin;
     public float birdyFlyingHeightMax;
 
@@ -74,7 +73,7 @@ public class EnvironmentManager : MonoBehaviour
 
         // Decide where the bird will go
         Vector3 temp = bird.transform.rotation.eulerAngles;
-        temp.y = Random.Range(60f, 120f);
+        temp.y = Random.Range(120f, 240f);
         bird.transform.rotation = Quaternion.Euler(temp);
 
         // Spawn
