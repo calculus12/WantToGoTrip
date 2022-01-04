@@ -4,12 +4,17 @@ using UnityEngine;
 
 public class EnvironmentManager : MonoBehaviour
 {
-    public float endPosZ;
+    public float birdsSpawnPosZ;
+    public float birdsEndPosZ;
+
+    public float birdsSpawnPosXMin;
+    public float birdsSpawnPosXMax;
+
     public float birdFlyingHeightMin;
     public float birdyFlyingHeightMax;
 
-    [SerializeField] Vector3 leftEnvStartPos;
-    [SerializeField] Vector3 rightEnvStartPos;
+    public float birdSpawnRateMax;
+
     [SerializeField] GameObject[] birds;
 
     static EnvironmentManager m_instance;
@@ -68,19 +73,19 @@ public class EnvironmentManager : MonoBehaviour
 
         // Decide where the bird will be spawned
         float randPosY = Random.Range(birdFlyingHeightMin, birdyFlyingHeightMax);
-        float randPosX = Random.Range(leftEnvStartPos.x + 10f, rightEnvStartPos.x - 10f);
-        bird.transform.position = new Vector3(randPosX, randPosY, 150f);
+        float randPosX = Random.Range(birdsSpawnPosXMin, birdsSpawnPosXMax);
+        bird.transform.position = new Vector3(randPosX, randPosY, birdsSpawnPosZ);
 
         // Decide where the bird will go
         Vector3 temp = bird.transform.rotation.eulerAngles;
-        temp.y = Random.Range(120f, 240f);
+        temp.y = Random.Range(150f, 210f);
         bird.transform.rotation = Quaternion.Euler(temp);
 
         // Spawn
         bird.SetActive(true);
 
         // Decide when the next bird will be spawned
-        float randTime = Random.Range(0, 10f);
+        float randTime = Random.Range(0, birdSpawnRateMax);
 
         // Reserve spawning
         Invoke("ActivateBird", randTime);

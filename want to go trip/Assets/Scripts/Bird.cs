@@ -9,7 +9,9 @@ public class Bird : MonoBehaviour
     {
         transform.Translate(Vector3.forward * speed * Time.deltaTime);
 
-        if (transform.position.z < EnvironmentManager.instance.endPosZ)
+        if (transform.position.z < EnvironmentManager.instance.birdsEndPosZ
+            && (transform.position.x < EnvironmentManager.instance.birdsSpawnPosXMin ||
+            transform.position.x > EnvironmentManager.instance.birdsSpawnPosXMax))
         {
             EnvironmentManager.instance.DeactivateBird(gameObject);
         }

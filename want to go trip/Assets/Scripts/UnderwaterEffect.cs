@@ -6,7 +6,7 @@ using UnityEngine.Rendering.Universal;
 
 public class UnderwaterEffect : MonoBehaviour
 {
-    public GameObject player;
+    public GameObject camera;
 
     public BoxCollider boundingBox;
 
@@ -41,7 +41,7 @@ public class UnderwaterEffect : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (boundingBox.bounds.Contains(player.transform.position))
+        if (boundingBox.bounds.Contains(camera.transform.position))
         {
             underWater = true;
         }
