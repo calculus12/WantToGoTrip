@@ -16,6 +16,8 @@ public class PlayerInput : MonoBehaviour // Manage player's input
     public bool a { get; private set; }
     public bool d { get; private set; }
 
+    public GameObject menu;
+
     // Update is called once per frame
     void Update()
     {
