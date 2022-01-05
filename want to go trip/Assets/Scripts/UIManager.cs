@@ -5,9 +5,13 @@ using UnityEngine.UI;
 
 public class UIManager : MonoBehaviour
 {
+    public Vector2 defaultMouseSensitivity;
+    [Range(0f, 1f)] public float audioVolume;
+    [Range(0f, 1f)] public float mouseSensitivity;
+    public int playerMaxHp;
+    public int boatMaxHp;
+
     static UIManager m_instance;
-    int currentPlayerMaxHp = 100;
-    int currentBoatMaxHp = 100;
     int currentPlayerHp = 100;
     int currentBoatHp = 100;
 
@@ -20,44 +24,6 @@ public class UIManager : MonoBehaviour
                 m_instance = FindObjectOfType<UIManager>();
             }
             return m_instance;
-        }
-    }
-    
-    public int playerMaxHp
-    {
-        get
-        {
-            return currentPlayerMaxHp;
-        }
-        set
-        {
-            if (value < 0)
-            {
-                currentPlayerMaxHp = 0;
-            }
-            else
-            {
-                currentPlayerMaxHp = value;
-            }
-        }
-    }
-    
-    public int boatMaxHp
-    {
-        get
-        {
-            return currentBoatMaxHp;
-        }
-        set
-        {
-            if (value < 0)
-            {
-                currentBoatMaxHp = 0;
-            }
-            else
-            {
-                currentBoatMaxHp = value;
-            }
         }
     }
 
@@ -73,9 +39,9 @@ public class UIManager : MonoBehaviour
             {
                 currentPlayerHp = 0;
             }
-            else if (value > currentPlayerMaxHp)
+            else if (value > playerMaxHp)
             {
-                currentPlayerHp = currentPlayerMaxHp;
+                currentPlayerHp = playerMaxHp;
             }
             else
             {
@@ -96,9 +62,9 @@ public class UIManager : MonoBehaviour
             {
                 currentBoatHp = 0;
             }
-            else if (value > currentBoatMaxHp)
+            else if (value > boatMaxHp)
             {
-                currentBoatHp = currentBoatMaxHp;
+                currentBoatHp = boatMaxHp;
             }
             else
             {
@@ -106,8 +72,6 @@ public class UIManager : MonoBehaviour
             }
         }
     }
-
-    public float audioVolume { get; set; } = 1f;
 
     void Awake()
     {

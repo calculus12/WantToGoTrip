@@ -1,12 +1,16 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using TMPro;
 
 public class StartMenu : MonoBehaviour
 {
     [HideInInspector] public AudioSource[] audioList;
 
     [SerializeField] GameObject setting;
+    [SerializeField] TextMeshProUGUI volumeRate;
+    [SerializeField] Slider audioController;
 
     void Awake()
     {
@@ -16,6 +20,7 @@ public class StartMenu : MonoBehaviour
         {
             audioList[i].volume = UIManager.instance.audioVolume;
         }
+        audioController.value = UIManager.instance.audioVolume;
     }
     
     public void OnClickPlay()
@@ -42,5 +47,16 @@ public class StartMenu : MonoBehaviour
         #else
             Application.Quit();
         #endif
+    }
+
+    // Change audio volume
+    public void OnSliderAudioVolume(float value)
+    {
+        volumeRate.text = $"{value * 100:F1}%";
+        for (int i = 0; i < audioList.Length; i++)
+        {
+            audioList[i].volume = value;
+        }
+        UIManager.instance.audioVolume = value;
     }
 }
