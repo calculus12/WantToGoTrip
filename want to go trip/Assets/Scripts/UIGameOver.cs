@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class GameOverUI : MonoBehaviour
+public class UIGameOver : MonoBehaviour
 {
     public void OnClickRestart()
     {

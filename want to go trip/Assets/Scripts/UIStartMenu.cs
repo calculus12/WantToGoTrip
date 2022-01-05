@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
-public class StartMenu : MonoBehaviour
+public class UIStartMenu : MonoBehaviour
 {
     [HideInInspector] public AudioSource[] audioList;
 
@@ -25,7 +25,7 @@ public class StartMenu : MonoBehaviour
     
     public void OnClickPlay()
     {
-        LoadingUI.instance.LoadScene("Main");
+        UILoading.instance.LoadScene("Main");
     }
 
     public void OnClickSetting()

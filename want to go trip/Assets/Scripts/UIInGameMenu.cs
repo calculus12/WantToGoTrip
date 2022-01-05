@@ -6,7 +6,7 @@ using UnityEngine.UI;
 using TMPro;
 using Cinemachine;
 
-public class InGameMenu : MonoBehaviour
+public class UIInGameMenu : MonoBehaviour
 {
     [HideInInspector] public AudioSource[] audioList;
 
