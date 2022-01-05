@@ -13,14 +13,16 @@ public class UIHp : MonoBehaviour
     [SerializeField] Transform boatHpCanvas;
     [SerializeField] PlayerState playerState;
     float underwaterTimer;
+    float abovewaterTimer;
 
     void Awake()
     {
         // Initialize HP to max
         UIManager.instance.playerHp = UIManager.instance.playerMaxHp;
         UIManager.instance.boatHp = UIManager.instance.boatMaxHp;
-        UIManager.instance.playerOxygen = UIManager.instance.playerMaxOxygen;
-        underwaterTimer = UIManager.instance.underwaterEndurance;
+        UIManager.instance.playerOxygen = UIManager.instance.maxOxygen;
+        underwaterTimer = UIManager.instance.oxygenDamageInterval;
+        abovewaterTimer = UIManager.instance.oxygenRecoveryInterval;
     }
 
     void Update()
@@ -37,13 +39,15 @@ public class UIHp : MonoBehaviour
             Cursor.lockState = CursorLockMode.None;
         }
 
-        // If player is in underwater, decrease oxygen rate
+        // If player is under water, decrease oxygen rate
+        // If player is above water, increase oxygen rate
         if (playerState.isUnderwater)
         {
-            if (underwaterTimer < 0f)
+            abovewaterTimer = 0f;
+            if (underwaterTimer <= 0f)
             {
-                UIManager.instance.playerOxygen -= UIManager.instance.underwaterDamage;
-                underwaterTimer = UIManager.instance.underwaterEndurance;
+                UIManager.instance.playerOxygen -= UIManager.instance.oxygenDamage;
+                underwaterTimer = UIManager.instance.oxygenDamageInterval;
             }
             else
             {
@@ -52,7 +56,17 @@ public class UIHp : MonoBehaviour
         }
         else
         {
-            underwaterTimer = UIManager.instance.underwaterEndurance;
+            underwaterTimer = UIManager.instance.oxygenDamageInterval;
+            if (abovewaterTimer <= 0f)
+            {
+                UIManager.instance.playerOxygen += UIManager.instance.oxygenRecovery;
+                abovewaterTimer = UIManager.instance.oxygenRecoveryInterval;
+            }
+            else
+            {
+                abovewaterTimer -= Time.deltaTime;
+            }
+            
         }
     }
     

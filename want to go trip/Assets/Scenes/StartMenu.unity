@@ -2110,7 +2110,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4162099290271450, guid: e7c92673993d9c24b9a4ae3684fccc34, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.07856152
+      value: 0.054337073
       objectReference: {fileID: 0}
     - target: {fileID: 4162099290271450, guid: e7c92673993d9c24b9a4ae3684fccc34, type: 3}
       propertyPath: m_LocalPosition.z
@@ -2389,9 +2389,11 @@ MonoBehaviour:
   mouseSensitivity: 0.5
   playerMaxHp: 100
   boatMaxHp: 100
-  playerMaxOxygen: 100
-  underwaterDamage: 20
-  underwaterEndurance: 3
+  maxOxygen: 100
+  oxygenDamage: 20
+  oxygenDamageInterval: 2
+  oxygenRecovery: 20
+  oxygenRecoveryInterval: 1
 --- !u!4 &2104297144
 Transform:
   m_ObjectHideFlags: 0

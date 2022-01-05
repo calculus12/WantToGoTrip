@@ -10,9 +10,11 @@ public class UIManager : MonoBehaviour
     [Range(0f, 1f)] public float mouseSensitivity;
     public int playerMaxHp;
     public int boatMaxHp;
-    public int playerMaxOxygen;
-    public int underwaterDamage;
-    public int underwaterEndurance;
+    public int maxOxygen;
+    public int oxygenDamage;
+    public int oxygenDamageInterval;
+    public int oxygenRecovery;
+    public int oxygenRecoveryInterval;
 
     static UIManager m_instance;
     int currentPlayerHp;
@@ -89,9 +91,9 @@ public class UIManager : MonoBehaviour
             {
                 currentPlayerOxygen = 0;
             }
-            else if (value > playerMaxOxygen)
+            else if (value > maxOxygen)
             {
-                currentPlayerOxygen = playerMaxOxygen;
+                currentPlayerOxygen = maxOxygen;
             }
             else
             {

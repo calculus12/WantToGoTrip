@@ -44,11 +44,13 @@ public class UIInGameMenu : MonoBehaviour
             {
                 menu.SetActive(false);
                 Cursor.lockState = CursorLockMode.Locked;
+                Time.timeScale = 1f;
             }
             else
             {
                 menu.SetActive(true);
                 Cursor.lockState = CursorLockMode.None;
+                Time.timeScale = 0f;
             }
         }
     }
@@ -57,10 +59,12 @@ public class UIInGameMenu : MonoBehaviour
     {
         menu.SetActive(false);
         Cursor.lockState = CursorLockMode.Locked;
+        Time.timeScale = 1f;
     }
 
     public void OnClickRestart()
     {
+        Time.timeScale = 1f;
         SceneManager.LoadScene("Main");
     }
 
@@ -77,6 +81,7 @@ public class UIInGameMenu : MonoBehaviour
     }
 
     public void OnClickExit() {
+        Time.timeScale = 1f;
         SceneManager.LoadScene("StartMenu");
     }
 
