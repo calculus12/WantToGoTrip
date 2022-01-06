@@ -2093,7 +2093,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 417065889}
-  m_LocalRotation: {x: 0.3178629, y: -0.0048816516, z: 0.0016365979, w: 0.94812274}
+  m_LocalRotation: {x: 0.3178629, y: -0.0048816516, z: 0.001636598, w: 0.94812274}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -6071,7 +6071,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 963194225}
-  m_LocalRotation: {x: 0.29791358, y: -0.004914857, z: 0.0015338785, w: 0.954579}
+  m_LocalRotation: {x: 0.2979136, y: -0.0049149245, z: 0.0015338802, w: 0.954579}
   m_LocalPosition: {x: -2.1586318, y: -14.62617, z: 295.8308}
   m_LocalScale: {x: 2, y: 2, z: 2}
   m_Children: []
@@ -8093,13 +8093,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1c3806eccc66fad4d990a9f65011008d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  birdsSpawnPosZ: 450
-  birdsEndPosZ: -500
-  birdsSpawnPosXMin: -200
-  birdsSpawnPosXMax: 200
-  birdFlyingHeightMin: 25
-  birdyFlyingHeightMax: 35
-  birdSpawnRateMax: 8
+  birdPosMin: {x: -150, y: 25, z: -450}
+  birdPosMax: {x: 150, y: 35, z: 450}
+  birdSpawnIntervalMin: 1
+  birdSpawnIntervalMax: 5
   birds:
   - {fileID: 881912120886312974, guid: 20f0c534aeedcb043ac957ed493dfcc8, type: 3}
   - {fileID: 3499554119012976686, guid: 927ae843e55bbf943bb8917e81bf534c, type: 3}
@@ -8655,7 +8652,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1816974027}
-  m_LocalRotation: {x: 0.29568875, y: -0.0049184235, z: 0.0015224195, w: 0.95527047}
+  m_LocalRotation: {x: 0.29568878, y: -0.0049184645, z: 0.0015224324, w: 0.95527047}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
