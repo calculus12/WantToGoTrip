@@ -10,6 +10,7 @@ public class PlayerLumbering : MonoBehaviour
     
     public Transform axeRaycastStart;
 
+    public float damage = 30;
     public float lumberingTime = 1f;
     public float axeDistance = 0.3f;
     
@@ -35,13 +36,19 @@ public class PlayerLumbering : MonoBehaviour
         state.isLumbering = true;
         animator.SetTrigger("lumber");
 
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(0.4f);
         Ray ray = new Ray(axeRaycastStart.position, axeRaycastStart.forward);
         RaycastHit hit;
         Debug.DrawRay(axeRaycastStart.position, axeRaycastStart.forward, Color.red, 0.5f);
         if (Physics.Raycast(ray, out hit, axeDistance))
         {
-            Debug.Log(hit.collider.name);
+            IDamageable target = hit.collider.GetComponent<IDamageable>();
+
+            if (target != null)
+            {
+                Debug.Log(hit.collider.name);
+                target.OnDamage(damage, hit.point, hit.normal);
+            }
         }
         yield return new WaitForSeconds(lumberingTime);
         state.isLumbering = false;
