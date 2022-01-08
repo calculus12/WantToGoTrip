@@ -22,7 +22,7 @@ public class PlayerSound : MonoBehaviour
             afterGrounded = false;
             audioPlayer.PlayOneShot(splashSound);
         }
-        if (state.isGrounded)
+        if (state.isOnRaft)
             afterGrounded = true;
     }
 }

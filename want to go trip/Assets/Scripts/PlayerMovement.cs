@@ -65,7 +65,7 @@ public class PlayerMovement : MonoBehaviour
 
         Vector3 direction = new Vector3(input.horizontal, 0f, input.vertical).normalized;
 
-        if (state.isGrounded)
+        if (state.isOnRaft)
         {
             state.isFalling = false;
             underwaterY = 0f;
@@ -109,7 +109,7 @@ public class PlayerMovement : MonoBehaviour
 
             controller.Move(velocity * Time.deltaTime); // y-axis movement (move caused by gravity)
         }
-        else if (!state.isUnderwater && !state.isGrounded) // if player is falling
+        else if (!state.isUnderwater && !state.isOnRaft) // if player is falling
         {
             state.isFalling = true;
             jumpAnimationPlayed = false;

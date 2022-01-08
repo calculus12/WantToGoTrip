@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.54441375, g: 0.507012, b: 0.5242717, a: 1}
+  m_IndirectSpecularColor: {r: 0.54439956, g: 0.5070023, b: 0.5242686, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1437,7 +1437,7 @@ GameObject:
   - component: {fileID: 310907783}
   - component: {fileID: 310907785}
   - component: {fileID: 310907784}
-  m_Layer: 5
+  m_Layer: 7
   m_Name: Text (TMP)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1870,7 +1870,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 400057774}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Sailing
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2257,7 +2257,7 @@ MonoBehaviour:
   axeRaycastStart: {fileID: 305179719}
   damage: 30
   lumberingTime: 0.5
-  axeDistance: 1
+  axeDistance: 1.3
 --- !u!114 &498715817
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2822,7 +2822,7 @@ GameObject:
   - component: {fileID: 667912823}
   - component: {fileID: 667912822}
   - component: {fileID: 667912821}
-  m_Layer: 5
+  m_Layer: 7
   m_Name: SailingUI
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3174,7 +3174,7 @@ GameObject:
   m_Component:
   - component: {fileID: 781566319}
   - component: {fileID: 781566321}
-  m_Layer: 3
+  m_Layer: 7
   m_Name: Raft
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3276,7 +3276,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 822323410}
-  m_LocalRotation: {x: 0.31429103, y: -0.00649611, z: 0.0021507055, w: 0.949302}
+  m_LocalRotation: {x: 0.3142908, y: -0.006602326, z: 0.0021858711, w: 0.9493013}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -4585,9 +4585,9 @@ MonoBehaviour:
   waterCheck: {fileID: 835968311}
   groundDistance: 0.3
   jumpCheckDistance: 0.1
-  groundMask:
+  raftMask:
     serializedVersion: 2
-    m_Bits: 8
+    m_Bits: 128
   waterMask:
     serializedVersion: 2
     m_Bits: 16
@@ -6171,7 +6171,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1053663747}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: SailingPosition
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7380,7 +7380,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1444080956}
   - component: {fileID: 1444080957}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: SalingUIZone
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9316,7 +9316,7 @@ GameObject:
   - component: {fileID: 4131725373551708}
   - component: {fileID: 1431301330058331}
   - component: {fileID: 1431301330058332}
-  m_Layer: 3
+  m_Layer: 7
   m_Name: Raft
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9374,7 +9374,7 @@ GameObject:
   - component: {fileID: 4426998992944008}
   - component: {fileID: 33395272234256938}
   - component: {fileID: 23372398662438546}
-  m_Layer: 3
+  m_Layer: 7
   m_Name: EA04_Wehicule_Raft_01a_LOD0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9488,7 +9488,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1318703835797940344, guid: eadb06920ae0a4a83818673a4cdd807d, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.048602164
+      value: 0.0024360642
       objectReference: {fileID: 0}
     - target: {fileID: 1318703835797940344, guid: eadb06920ae0a4a83818673a4cdd807d, type: 3}
       propertyPath: m_LocalPosition.z
