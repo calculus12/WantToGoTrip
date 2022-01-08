@@ -18,11 +18,14 @@ public class PlayerState : MonoBehaviour
 
     // mask that distinguish ground, water, water surface
     public LayerMask raftMask;
+    public LayerMask groundMask;
     public LayerMask waterMask;
     public LayerMask surfaceMask;
     
     //property that represent player's state
     public bool isOnRaft { get; private set; }
+
+    public bool isGrounded { get; private set; }
     
     public bool canJump { get; private set; }
 
@@ -42,6 +45,8 @@ public class PlayerState : MonoBehaviour
     {
         isOnRaft = Physics.CheckSphere(groundCheck1.position, groundDistance, raftMask) |
                      Physics.CheckSphere(groundCheck2.position, groundDistance, raftMask);
+        isGrounded = Physics.CheckSphere(groundCheck1.position, groundDistance, groundMask) |
+            Physics.CheckSphere(groundCheck2.position, groundDistance, groundMask);
         canJump = Physics.CheckSphere(groundCheck1.position, jumpCheckDistance, raftMask) |
                   Physics.CheckSphere(groundCheck2.position, jumpCheckDistance, raftMask);
         isUnderwater = Physics.CheckSphere(waterCheck.position, 0.02f, waterMask);

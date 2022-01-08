@@ -6,12 +6,13 @@ using UnityEngine;
 public class PlayerHealth : HealthEntity
 {
     public AudioClip hitSound;
-    public AudioClip deathSound;
-   
+    public AudioClip deathSound;   
     public float oxygen { get; set; }
     public float oxygenTime = 20f;
     public float startingOxygen = 100f;
-    public float oxygenRecoverySpeed = 2f;
+    public float oxygenRecoverySpeed = 10f;
+    public float oxygenDecreaseSpeed = 4f;
+    public SailingControl sailing;
 
     private PlayerState state;
     private AudioSource playerAudioPlayer;
@@ -20,7 +21,7 @@ public class PlayerHealth : HealthEntity
     private PlayerLumbering playerLumbering;
 
 
-    private void Start()
+    private void Awake()
     {
         state = GetComponent<PlayerState>();
         playerAudioPlayer = GetComponent<AudioSource>();
@@ -30,39 +31,56 @@ public class PlayerHealth : HealthEntity
         oxygen = startingOxygen;
     }
 
-    private void Update()
-    {
-        // update player's oxygen
-
-        //oxygen = Mathf.Lerp(oxygen, startingOxygen, Time.deltaTime * oxygenRecoverySpeed);
-        //if (state.isSubmerging)
-        //{
-        //    oxygen = Mathf.Lerp(oxygen, 0, Time.deltaTime);
-        //}
-    }
-
     protected override void OnEnable()
     {
         base.OnEnable();
 
+        UIManager.instance.UpdateHealth(health / startingHealth);
+        UIManager.instance.UpdateOxygen(oxygen / startingOxygen);
+
         playerMovement.enabled = true;
         playerLumbering.enabled = true;
+        sailing.enabled = true;
+    }
+
+    private void Update()
+    {
+        if (health <= 0f && !dead)
+        {
+            Die();
+        }
+
+        health -= 10 * Time.deltaTime;
+
+        if (state.isSubmerging)
+        {
+            oxygen -= Time.deltaTime * oxygenDecreaseSpeed;
+        }
+        else
+        {
+            oxygen = Mathf.Clamp(oxygen + Time.deltaTime * oxygenRecoverySpeed, 0, startingOxygen);
+        }
+        UIManager.instance.UpdateOxygen(oxygen / startingOxygen);
+        UIManager.instance.UpdateHealth(health / startingHealth);
     }
 
     public override void RestoreHealth(float restoreHealth)
     {
         base.RestoreHealth(restoreHealth);
+
     }
 
     public override void Die()
     {
         base.Die();
-        
+
         /*
          * play death animation
          */
+        UIManager.instance.SetActiveGameoverUI();
 
         playerMovement.enabled = false;
         playerLumbering.enabled = false;
+        sailing.enabled = false;
     }
 }

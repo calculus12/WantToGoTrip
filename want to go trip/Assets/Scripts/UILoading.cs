@@ -6,28 +6,28 @@ using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using TMPro;
 
-public class LoadingUI : MonoBehaviour
+public class UILoading : MonoBehaviour
 {
     [SerializeField] CanvasGroup canvasGroup;
     [SerializeField] Image progressBar;
     [SerializeField] TextMeshProUGUI progressRate;
-    static LoadingUI l_instance;
+    static UILoading l_instance;
     string nextScene;
 
-    public static LoadingUI instance
+    public static UILoading instance
     {
         get
         {
             if (l_instance == null)
             {
-                var obj = FindObjectOfType<LoadingUI>();
+                var obj = FindObjectOfType<UILoading>();
                 if (obj != null)
                 {
                     l_instance = obj;
                 }
                 else
                 {
-                    l_instance = Instantiate(Resources.Load<LoadingUI>("LoadingUI"));
+                    l_instance = Instantiate(Resources.Load<UILoading>("UILoading"));
                 }
             }
             return l_instance;

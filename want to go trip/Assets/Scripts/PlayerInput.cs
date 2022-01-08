@@ -16,8 +16,6 @@ public class PlayerInput : MonoBehaviour // Manage player's input
     public bool a { get; private set; }
     public bool d { get; private set; }
 
-    public GameObject menu;
-
     // Update is called once per frame
     void Update()
     {
@@ -32,5 +30,10 @@ public class PlayerInput : MonoBehaviour // Manage player's input
         w = Input.GetKeyDown(KeyCode.W);
         a = Input.GetKeyDown(KeyCode.A);
         d = Input.GetKeyDown(KeyCode.D);
+
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            UIManager.instance.SetActivePauseUI(true);
+        }
     }
 }

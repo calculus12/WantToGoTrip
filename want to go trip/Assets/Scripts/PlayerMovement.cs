@@ -10,7 +10,7 @@ public class PlayerMovement : MonoBehaviour
 
     public CharacterController controller;
 
-    public Transform  camTransform;
+    public Transform camTransform;
 
     public float turnSmoothTime = 0.1f; // player's rotation speed
     public float turnSmoothVelocity;
@@ -46,7 +46,13 @@ public class PlayerMovement : MonoBehaviour
         state = GetComponent<PlayerState>();
         Cursor.lockState = CursorLockMode.Locked;
     }
-    
+
+    void LateUpdate()
+    {
+        // Boat Hp bar rotates, so player can see it
+        UIManager.instance.rotateRaftHP(camTransform.forward);
+    }
+
     void Update()
     {
 
@@ -65,12 +71,15 @@ public class PlayerMovement : MonoBehaviour
 
         Vector3 direction = new Vector3(input.horizontal, 0f, input.vertical).normalized;
 
-        if (state.isOnRaft)
+        if (state.isOnRaft || state.isGrounded)
         {
             state.isFalling = false;
             underwaterY = 0f;
             //Debug.Log(RaftController.velocity);
-            controller.Move(RaftController.velocity * Time.deltaTime);
+            if (state.isOnRaft)
+            {
+                controller.Move(RaftController.velocity * Time.deltaTime);
+            }
             // prevent increasing velocity by gravity while player is grounded
             if (velocity.y < 0)
             {
@@ -109,7 +118,7 @@ public class PlayerMovement : MonoBehaviour
 
             controller.Move(velocity * Time.deltaTime); // y-axis movement (move caused by gravity)
         }
-        else if (!state.isUnderwater && !state.isOnRaft) // if player is falling
+        else if (!state.isUnderwater && !state.isOnRaft && !state.isGrounded) // if player is falling
         {
             state.isFalling = true;
             jumpAnimationPlayed = false;
