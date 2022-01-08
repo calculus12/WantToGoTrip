@@ -7,18 +7,38 @@ public class PlayerHealth : HealthEntity
 {
     public AudioClip hitSound;
     public AudioClip deathSound;
+   
+    public float oxygen { get; set; }
+    public float oxygenTime = 20f;
+    public float startingOxygen = 100f;
+    public float oxygenRecoverySpeed = 2f;
 
+    private PlayerState state;
     private AudioSource playerAudioPlayer;
     private Animator playerAnimator;
     private PlayerMovement playerMovement;
     private PlayerLumbering playerLumbering;
 
-    public void Start()
+
+    private void Start()
     {
+        state = GetComponent<PlayerState>();
         playerAudioPlayer = GetComponent<AudioSource>();
         playerAnimator = GetComponent<Animator>();
         playerMovement = GetComponent<PlayerMovement>();
         playerLumbering = GetComponent<PlayerLumbering>();
+        oxygen = startingOxygen;
+    }
+
+    private void Update()
+    {
+        // update player's oxygen
+
+        //oxygen = Mathf.Lerp(oxygen, startingOxygen, Time.deltaTime * oxygenRecoverySpeed);
+        //if (state.isSubmerging)
+        //{
+        //    oxygen = Mathf.Lerp(oxygen, 0, Time.deltaTime);
+        //}
     }
 
     protected override void OnEnable()

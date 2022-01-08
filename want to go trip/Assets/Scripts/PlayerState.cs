@@ -11,6 +11,7 @@ public class PlayerState : MonoBehaviour
     public Transform groundCheck1;
     public Transform groundCheck2;
     public Transform waterCheck;
+    public Transform submergeCheck;
 
     public float groundDistance = 0.4f;
     public float jumpCheckDistance = 0.1f;
@@ -35,6 +36,8 @@ public class PlayerState : MonoBehaviour
 
     public bool isLumbering { get; set; }
 
+    public bool isSubmerging { get; private set; }
+
     void Update()
     {
         isOnRaft = Physics.CheckSphere(groundCheck1.position, groundDistance, raftMask) |
@@ -43,5 +46,6 @@ public class PlayerState : MonoBehaviour
                   Physics.CheckSphere(groundCheck2.position, jumpCheckDistance, raftMask);
         isUnderwater = Physics.CheckSphere(waterCheck.position, 0.02f, waterMask);
         isSurface = Physics.CheckSphere(waterCheck.position, 0.1f, surfaceMask);
+        isSubmerging = Physics.CheckSphere(waterCheck.position, 0.01f, waterMask);
     }
 }
