@@ -1832,9 +1832,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a6efa21d8b0d41f4f9d972a5320ef313, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  background: {fileID: 303404643}
-  text: {fileID: 113808639}
-  button: {fileID: 257145623}
 --- !u!1 &323738542
 GameObject:
   m_ObjectHideFlags: 0
@@ -2393,6 +2390,51 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 439682555}
   m_CullTransparentMesh: 1
+--- !u!1 &445925638
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 445925640}
+  - component: {fileID: 445925639}
+  m_Layer: 0
+  m_Name: EffectManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &445925639
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 445925638}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2e31ae9132e8e5a4a876d7802c91c248, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  effect:
+  - {fileID: 3424274988770388750, guid: 430fce6f7253dc549b319cd6f1791828, type: 3}
+--- !u!4 &445925640
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 445925638}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -8.02576, y: -21.657976, z: 13.34257}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 10
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &483521650
 GameObject:
   m_ObjectHideFlags: 0
@@ -3686,6 +3728,82 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!1 &770287611
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 770287612}
+  - component: {fileID: 770287614}
+  - component: {fileID: 770287613}
+  m_Layer: 0
+  m_Name: Terrain
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 4294967295
+  m_IsActive: 1
+--- !u!4 &770287612
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 770287611}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -150, y: -20, z: 450}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1860319418}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!154 &770287613
+TerrainCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 770287611}
+  m_Material: {fileID: 0}
+  m_Enabled: 1
+  m_TerrainData: {fileID: 15600000, guid: 248e9989d816c8046a5251f2ee2ac1fc, type: 2}
+  m_EnableTreeColliders: 1
+--- !u!218 &770287614
+Terrain:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 770287611}
+  m_Enabled: 1
+  serializedVersion: 6
+  m_TerrainData: {fileID: 15600000, guid: 248e9989d816c8046a5251f2ee2ac1fc, type: 2}
+  m_TreeDistance: 5000
+  m_TreeBillboardDistance: 50
+  m_TreeCrossFadeLength: 5
+  m_TreeMaximumFullLODCount: 50
+  m_DetailObjectDistance: 80
+  m_DetailObjectDensity: 1
+  m_HeightmapPixelError: 5
+  m_SplatMapDistance: 1000
+  m_HeightmapMaximumLOD: 0
+  m_ShadowCastingMode: 2
+  m_DrawHeightmap: 1
+  m_DrawInstanced: 0
+  m_DrawTreesAndFoliage: 1
+  m_ReflectionProbeUsage: 1
+  m_MaterialTemplate: {fileID: 2100000, guid: 594ea882c5a793440b60ff72d896021e, type: 2}
+  m_BakeLightProbesForTrees: 1
+  m_PreserveTreePrototypeLayers: 0
+  m_DeringLightProbesForTrees: 1
+  m_ScaleInLightmap: 0.0256
+  m_LightmapParameters: {fileID: 15203, guid: 0000000000000000f000000000000000, type: 0}
+  m_GroupingID: 0
+  m_RenderingLayerMask: 1
+  m_AllowAutoConnect: 1
 --- !u!1 &781566318
 GameObject:
   m_ObjectHideFlags: 0
@@ -3799,10 +3917,10 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 822323410}
 <<<<<<< HEAD
-  m_LocalRotation: {x: 0.31429118, y: -0.00643028, z: 0.0021289105, w: 0.9493025}
+  m_LocalRotation: {x: 0.31428868, y: -0.0074666752, z: 0.002472036, w: 0.9492949}
 =======
   m_LocalRotation: {x: 0.3142868, y: -0.008159963, z: 0.0027015673, w: 0.9492892}
->>>>>>> e177332a9dda4a4cd02bd0cdeea27c1c34c17752
+>>>>>>> f63641b861b0300e5e4076283822257e1da13164
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -5116,6 +5234,9 @@ MonoBehaviour:
   raftMask:
     serializedVersion: 2
     m_Bits: 128
+  groundMask:
+    serializedVersion: 2
+    m_Bits: 8
   waterMask:
     serializedVersion: 2
     m_Bits: 16
@@ -5152,7 +5273,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 124135f7588fce444b1febf0297ddd2c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  menu: {fileID: 0}
 --- !u!1 &835993917
 GameObject:
   m_ObjectHideFlags: 0
@@ -5178,6 +5298,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 835993911}
   m_Enabled: 1
   m_EditorHideFlags: 0
+<<<<<<< HEAD
   m_Script: {fileID: 11500000, guid: ec01242df37744a78b14c665006758d7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
@@ -5186,6 +5307,14 @@ MonoBehaviour:
   deathSound: {fileID: 0}
   oxygenTime: 20
   startingOxygen: 100
+  oxygenRecoverySpeed: 10
+  oxygenDecreaseSpeed: 4
+  sailing: {fileID: 1431301330058332}
+=======
+  m_Script: {fileID: 11500000, guid: 48d51252b857c124aad9d8ed04d1001b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+>>>>>>> f63641b861b0300e5e4076283822257e1da13164
 --- !u!1 &835993919
 GameObject:
   m_ObjectHideFlags: 0
@@ -6160,7 +6289,6 @@ GameObject:
   - component: {fileID: 908354164}
   - component: {fileID: 908354163}
   - component: {fileID: 908354162}
-  - component: {fileID: 908354168}
   - component: {fileID: 908354166}
   m_Layer: 5
   m_Name: UI
@@ -6273,25 +6401,6 @@ MonoBehaviour:
   mouseSensitivityRate: {fileID: 870090803}
   mouseSensitivityController: {fileID: 1324016160}
   cinemachineFreeLook: {fileID: 1767122227}
---- !u!114 &908354168
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 908354161}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 11d912a861c906f409f892ae7bbc2e97, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  playerHp: {fileID: 439682557}
-  boatHp: {fileID: 1509861671}
-  playerOxygen: {fileID: 964567755}
-  gameOverUI: {fileID: 317917298}
-  cam: {fileID: 963194228}
-  boatHpCanvas: {fileID: 1961682464}
-  playerState: {fileID: 835993914}
 --- !u!1 &922196617
 GameObject:
   m_ObjectHideFlags: 0
@@ -6670,7 +6779,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 963194225}
-  m_LocalRotation: {x: 0.29791358, y: -0.004914857, z: 0.0015338785, w: 0.954579}
+  m_LocalRotation: {x: 0.2979136, y: -0.0049149245, z: 0.0015338802, w: 0.954579}
   m_LocalPosition: {x: -2.1586318, y: -14.62617, z: 295.8308}
   m_LocalScale: {x: 2, y: 2, z: 2}
   m_Children: []
@@ -6831,7 +6940,7 @@ GameObject:
   - component: {fileID: 1030471987}
   - component: {fileID: 1030471986}
   m_Layer: 0
-  m_Name: Terrain (2)
+  m_Name: Terrain (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6857,7 +6966,7 @@ Terrain:
   m_GameObject: {fileID: 1030471985}
   m_Enabled: 1
   serializedVersion: 6
-  m_TerrainData: {fileID: 0}
+  m_TerrainData: {fileID: 15600000, guid: 248e9989d816c8046a5251f2ee2ac1fc, type: 2}
   m_TreeDistance: 5000
   m_TreeBillboardDistance: 50
   m_TreeCrossFadeLength: 5
@@ -6893,7 +7002,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1860319418}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1053663746
 GameObject:
@@ -8743,7 +8852,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Boat HP
+  m_text: Raft HP
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -8951,13 +9060,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1c3806eccc66fad4d990a9f65011008d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  birdsSpawnPosZ: 450
-  birdsEndPosZ: -500
-  birdsSpawnPosXMin: -200
-  birdsSpawnPosXMax: 200
-  birdFlyingHeightMin: 25
-  birdyFlyingHeightMax: 35
-  birdSpawnRateMax: 8
+  birdPosMin: {x: -150, y: 25, z: -450}
+  birdPosMax: {x: 150, y: 35, z: 450}
+  birdSpawnIntervalMin: 1
+  birdSpawnIntervalMax: 5
   birds:
   - {fileID: 881912120886312974, guid: 20f0c534aeedcb043ac957ed493dfcc8, type: 3}
   - {fileID: 3499554119012976686, guid: 927ae843e55bbf943bb8917e81bf534c, type: 3}
@@ -9083,7 +9189,7 @@ GameObject:
   - component: {fileID: 1728000885}
   - component: {fileID: 1728000884}
   m_Layer: 0
-  m_Name: Terrain
+  m_Name: Terrain (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -9109,7 +9215,7 @@ Terrain:
   m_GameObject: {fileID: 1728000883}
   m_Enabled: 1
   serializedVersion: 6
-  m_TerrainData: {fileID: 0}
+  m_TerrainData: {fileID: 15600000, guid: 248e9989d816c8046a5251f2ee2ac1fc, type: 2}
   m_TreeDistance: 5000
   m_TreeBillboardDistance: 50
   m_TreeCrossFadeLength: 5
@@ -9145,7 +9251,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1860319418}
-  m_RootOrder: 0
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1762438175
 GameObject:
@@ -9477,6 +9583,62 @@ Transform:
   m_Father: {fileID: 835968279}
   m_RootOrder: 12
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1816957850
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1816957852}
+  - component: {fileID: 1816957851}
+  m_Layer: 0
+  m_Name: UIManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1816957851
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1816957850}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 77d107049b26a334581ca92c37cc767b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  defaultMouseSensitivity: {x: 300, y: 2}
+  audioVolume: 0.5
+  mouseSensitivity: 0.5
+  playerHealthSlider: {fileID: 439682557}
+  playerOxygenSlider: {fileID: 964567755}
+  raftHealthSlider: {fileID: 1509861671}
+  settingUI: {fileID: 596973623}
+  GameoverUI: {fileID: 317917298}
+  raftHpUI: {fileID: 1961682460}
+  gameoverBackground: {fileID: 303404643}
+  gameoverText: {fileID: 113808639}
+  gameoverButtons: {fileID: 257145623}
+  pauseUI: {fileID: 1541766035}
+--- !u!4 &1816957852
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1816957850}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 517.79004, y: 407.17764, z: -96.58576}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 11
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1816974027
 GameObject:
   m_ObjectHideFlags: 3
@@ -9543,7 +9705,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1816974027}
-  m_LocalRotation: {x: 0.29568875, y: -0.0049184235, z: 0.0015224195, w: 0.95527047}
+  m_LocalRotation: {x: 0.29568878, y: -0.0049184645, z: 0.0015224324, w: 0.95527047}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -9761,6 +9923,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1860319418}
+  - component: {fileID: 1860319419}
   m_Layer: 0
   m_Name: Terrains
   m_TagString: Untagged
@@ -9779,12 +9942,33 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 1728000886}
+  - {fileID: 770287612}
   - {fileID: 1499416834}
+  - {fileID: 1728000886}
   - {fileID: 1030471988}
   m_Father: {fileID: 0}
   m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1860319419
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1860319417}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 95ec749587febdf4481d37b1db62c26f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  terrains:
+  - {fileID: 770287611}
+  - {fileID: 1499416831}
+  - {fileID: 1728000883}
+  - {fileID: 1030471985}
+  speed: 10
+  startPosZ: 450
+  endPosZ: -750
 --- !u!1 &1902721278
 GameObject:
   m_ObjectHideFlags: 0
@@ -9998,7 +10182,7 @@ GameObject:
   - component: {fileID: 1961682462}
   - component: {fileID: 1961682461}
   m_Layer: 5
-  m_Name: Boat HP
+  m_Name: Raft HP
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -10438,6 +10622,7 @@ GameObject:
   - component: {fileID: 4131725373551708}
   - component: {fileID: 1431301330058331}
   - component: {fileID: 1431301330058332}
+  - component: {fileID: 1431301330058333}
   m_Layer: 7
   m_Name: Raft
   m_TagString: Untagged
@@ -10485,6 +10670,19 @@ MonoBehaviour:
   sailingUIZone: {fileID: 1444080957}
   sailingUI: {fileID: 667912819}
   playerState: {fileID: 835993914}
+--- !u!114 &1431301330058333
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1431301330058330}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a5dbb1bdda690a544afd0bbbead7b2e3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  startingHealth: 100
 --- !u!1 &1720389466652784
 GameObject:
   m_ObjectHideFlags: 0
@@ -10597,6 +10795,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Rock_01
       objectReference: {fileID: 0}
+    - target: {fileID: 1315405522260890322, guid: eadb06920ae0a4a83818673a4cdd807d, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 1315405522260890326, guid: eadb06920ae0a4a83818673a4cdd807d, type: 3}
       propertyPath: waterObject
       value: 
@@ -10611,7 +10813,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1318703835797940344, guid: eadb06920ae0a4a83818673a4cdd807d, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.017760267
+      value: -0.052069295
       objectReference: {fileID: 0}
     - target: {fileID: 1318703835797940344, guid: eadb06920ae0a4a83818673a4cdd807d, type: 3}
       propertyPath: m_LocalPosition.z

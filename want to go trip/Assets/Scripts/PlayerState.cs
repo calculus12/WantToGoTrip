@@ -48,7 +48,9 @@ public class PlayerState : MonoBehaviour
         isGrounded = Physics.CheckSphere(groundCheck1.position, groundDistance, groundMask) |
             Physics.CheckSphere(groundCheck2.position, groundDistance, groundMask);
         canJump = Physics.CheckSphere(groundCheck1.position, jumpCheckDistance, raftMask) |
-                  Physics.CheckSphere(groundCheck2.position, jumpCheckDistance, raftMask);
+                  Physics.CheckSphere(groundCheck2.position, jumpCheckDistance, raftMask) |
+                  Physics.CheckSphere(groundCheck1.position, jumpCheckDistance, groundMask) |
+            Physics.CheckSphere(groundCheck2.position, jumpCheckDistance, groundMask);
         isUnderwater = Physics.CheckSphere(waterCheck.position, 0.02f, waterMask);
         isSurface = Physics.CheckSphere(waterCheck.position, 0.1f, surfaceMask);
         isSubmerging = Physics.CheckSphere(waterCheck.position, 0.01f, waterMask);

@@ -4,35 +4,15 @@ using UnityEngine;
 
 public class EnvironmentManager : MonoBehaviour
 {
-    public float birdsSpawnPosZ;
-    public float birdsEndPosZ;
+    public Vector3 birdPosMin;
+    public Vector3 birdPosMax;
 
-    public float birdsSpawnPosXMin;
-    public float birdsSpawnPosXMax;
-
-    public float birdFlyingHeightMin;
-    public float birdyFlyingHeightMax;
-
-    public float birdSpawnRateMax;
-
+    [SerializeField] float birdSpawnIntervalMin;
+    [SerializeField] float birdSpawnIntervalMax;
     [SerializeField] GameObject[] birds;
-
     static EnvironmentManager m_instance;
-
     Queue<GameObject>[] birdPool;
     Dictionary<GameObject, int> getBirdPoolIdx;
-
-    public static EnvironmentManager instance
-    {
-        get
-        {
-            if (m_instance == null)
-            {
-                m_instance = FindObjectOfType<EnvironmentManager>();
-            }
-            return m_instance;
-        }
-    }
 
     void Awake()
     {
@@ -60,34 +40,44 @@ public class EnvironmentManager : MonoBehaviour
 
     void Start()
     {
-
-        // Create bird that is visible as soon as game starts
         ActivateBird();
+    }
+
+    public static EnvironmentManager instance
+    {
+        get
+        {
+            if (m_instance == null)
+            {
+                m_instance = FindObjectOfType<EnvironmentManager>();
+            }
+            return m_instance;
+        }
     }
 
     public void ActivateBird()
     {
-        // Decide what kind of bird will be spawned
+        // Determine what kind of bird will be spawned
         int randPoolIdx = Random.Range(0, birds.Length);
         GameObject bird = birdPool[randPoolIdx].Dequeue();
 
-        // Decide where the bird will be spawned
-        float randPosY = Random.Range(birdFlyingHeightMin, birdyFlyingHeightMax);
-        float randPosX = Random.Range(birdsSpawnPosXMin, birdsSpawnPosXMax);
-        bird.transform.position = new Vector3(randPosX, randPosY, birdsSpawnPosZ);
+        // Determine starting point of bird
+        float randPosX = Random.Range(birdPosMin.x, birdPosMax.x);
+        float randPosY = Random.Range(birdPosMin.y, birdPosMax.y);
+        Vector3 startPos = new Vector3(randPosX, randPosY, birdPosMax.z);
 
-        // Decide where the bird will go
-        Vector3 temp = bird.transform.rotation.eulerAngles;
-        temp.y = Random.Range(150f, 210f);
-        bird.transform.rotation = Quaternion.Euler(temp);
+        // Determine destination of bird
+        randPosX = Random.Range(birdPosMin.x, birdPosMax.x);
+        randPosY = Random.Range(birdPosMin.y, birdPosMax.y);
+        Vector3 destPos = new Vector3(randPosX, randPosY, birdPosMin.z);        
 
-        // Spawn
+        // Spawn bird
+        bird.transform.position = startPos;
+        bird.transform.LookAt(destPos);
         bird.SetActive(true);
 
-        // Decide when the next bird will be spawned
-        float randTime = Random.Range(0, birdSpawnRateMax);
-
-        // Reserve spawning
+        // Reserve next bird
+        float randTime = Random.Range(birdSpawnIntervalMin, birdSpawnIntervalMax);
         Invoke("ActivateBird", randTime);
     }
 

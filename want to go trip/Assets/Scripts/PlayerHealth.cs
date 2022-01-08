@@ -50,8 +50,6 @@ public class PlayerHealth : HealthEntity
             Die();
         }
 
-        health -= 10 * Time.deltaTime;
-
         if (state.isSubmerging)
         {
             oxygen -= Time.deltaTime * oxygenDecreaseSpeed;

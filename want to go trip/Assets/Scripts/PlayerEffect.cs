@@ -2,28 +2,33 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerSound : MonoBehaviour
+public class PlayerEffect : MonoBehaviour
 {
-    PlayerState state;
+    private PlayerState state;
     private AudioSource audioPlayer;
     public AudioClip splashSound;
+    bool afterGrounded;
 
-    private bool afterGrounded;
-    void Start()
+    void Awake()
     {
         state = GetComponent<PlayerState>();
         audioPlayer = GetComponent<AudioSource>();
     }
 
-    // Update is called once per frame
     void Update()
     {
         if (afterGrounded && state.isSurface)
         {
             afterGrounded = false;
             audioPlayer.PlayOneShot(splashSound);
+            Vector3 pos = new Vector3(transform.position.x, 0f, transform.position.z);
+            Quaternion rot = Quaternion.identity;
+            Vector3 size = Vector3.one * 2.5f;
+            EffectManager.instance.ActivateEffect(EffectManager.EffectType.splash, pos, rot, size);
         }
-        if (state.isOnRaft)
+        else if (state.isOnRaft)
+        {
             afterGrounded = true;
+        }
     }
 }

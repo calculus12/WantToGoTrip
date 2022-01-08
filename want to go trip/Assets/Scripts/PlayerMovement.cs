@@ -78,11 +78,12 @@ public class PlayerMovement : MonoBehaviour
             if (state.isOnRaft)
             {
                 controller.Move(RaftController.velocity * Time.deltaTime);
+
             }
             // prevent increasing velocity by gravity while player is grounded
             if (velocity.y < 0)
             {
-                velocity.y = -2f;
+                velocity.y = -1f;
             }
 
             // jump
