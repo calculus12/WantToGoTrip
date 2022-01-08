@@ -46,7 +46,7 @@ public class UIInGameMenu : MonoBehaviour
             }
             else
             {
-                UIManager.instance.SetActivePauseUI(false);
+                UIManager.instance.SetActivePauseUI(true);
             }
         }
     }

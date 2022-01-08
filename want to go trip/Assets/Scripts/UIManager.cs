@@ -14,7 +14,8 @@ public class UIManager : MonoBehaviour
     public Image playerOxygenSlider;
     public Image raftHealthSlider;
     public GameObject settingUI;
-    [SerializeField] Transform raftHpCanvas;
+    public GameObject GameoverUI;
+    public GameObject raftHpUI;
 
     // objects having to do with Gameover UI
     [SerializeField] Image gameoverBackground;
@@ -39,7 +40,7 @@ public class UIManager : MonoBehaviour
     public void rotateRaftHP(Vector3 lookAt)
     {
         // Boat Hp bar rotates, so player can see it
-        raftHpCanvas.LookAt(raftHpCanvas.position + lookAt);
+        raftHpUI.transform.LookAt(raftHpUI.transform.position + lookAt);
     }
 
     public void UpdateHealth(float healthRatio)
@@ -75,7 +76,9 @@ public class UIManager : MonoBehaviour
 
     public void SetActiveGameoverUI()
     {
+        Cursor.lockState = CursorLockMode.None;
         StartCoroutine(FadeIn());
+        GameoverUI.SetActive(true);
     }
 
     IEnumerator FadeIn()
@@ -115,8 +118,4 @@ public class UIManager : MonoBehaviour
         SceneManager.LoadScene("StartMenu");
     }
 
-    void Awake()
-    {
-        DontDestroyOnLoad(gameObject);
-    }
 }
