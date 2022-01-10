@@ -4,9 +4,10 @@ using UnityEngine;
 
 public class EffectManager : MonoBehaviour
 {
-    public enum EffectType {splash};
+    // If you want to add a new effect, 
+    public enum EffectType {splash, mining}; // add effect type here and
+    [SerializeField] GameObject[] effect; // add effect prefab in inspector
 
-    [SerializeField] GameObject[] effect;
     static EffectManager m_instance;
     Queue<GameObject>[] effectPool;
     Dictionary<GameObject, int> getEffectPoolIdx;

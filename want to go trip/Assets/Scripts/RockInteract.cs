@@ -26,7 +26,7 @@ public class RockInteract : HealthEntity
     {
         if (!dead)
         {
-            // hitEffect.Play();
+            EffectManager.instance.ActivateEffect(EffectManager.EffectType.mining, hitPosition, Quaternion.Euler(hitNormal), Vector3.one);
             rockAudioPlayer.PlayOneShot(hitSound);
         }
         base.OnDamage(damage, hitPosition, hitNormal);
