@@ -3,26 +3,36 @@ using System.Collections;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using TMPro;
+using Cinemachine;
 
 public class UIManager : MonoBehaviour
 {
-    public Vector2 defaultMouseSensitivity;
-    [Range(0f, 1f)] public float audioVolume;
-    [Range(0f, 1f)] public float mouseSensitivity;
+    [HideInInspector] public bool isPlaying; // From game start to game over 
+    [HideInInspector] public AudioSource[] audioList;
+    [SerializeField] Slider startAudioController;
+    [SerializeField] Slider inGameAudioController;
+    [SerializeField] Slider mouseSensitivityController;
 
-    public Image playerHealthSlider;
-    public Image playerOxygenSlider;
-    public Image raftHealthSlider;
-    public GameObject settingUI;
-    public GameObject GameoverUI;
-    public GameObject raftHpUI;
+    [SerializeField] GameObject startMenu;
+    [SerializeField] GameObject inGameMenu;
+    [SerializeField] GameObject startSettingUI;
+    [SerializeField] GameObject inGameSettingUI;
+    [SerializeField] GameObject gameoverUI;
+    [SerializeField] GameObject playerHpUI;
+    [SerializeField] GameObject raftHpUI;
+    [SerializeField] Image playerHealthSlider;
+    [SerializeField] Image playerOxygenSlider;
+    [SerializeField] Image raftHealthSlider;
 
     // objects having to do with Gameover UI
     [SerializeField] Image gameoverBackground;
     [SerializeField] TextMeshProUGUI gameoverText;
     [SerializeField] GameObject gameoverButtons;
- 
-    public GameObject pauseUI;
+    
+    [SerializeField] CinemachineBrain cinemachineBrain;
+    [SerializeField] CinemachineFreeLook cinemachineFreeLook;
+    [SerializeField] Vector3 zoomInPos;
+    [SerializeField] Vector3 zoomInRot;
 
     static UIManager m_instance;
     public static UIManager instance
@@ -37,6 +47,21 @@ public class UIManager : MonoBehaviour
         }
     }
 
+    void Awake()
+    {
+        audioList = FindObjectsOfType<AudioSource>();
+
+        // Initialize audio volume
+        for (int i = 0; i < audioList.Length; i++)
+        {
+            audioList[i].volume = GameManager.instance.audioVolume;
+        }
+
+        // Initialize mouse sensitivity
+        cinemachineFreeLook.m_XAxis.m_MaxSpeed = GameManager.instance.defaultMouseSensitivity.x * GameManager.instance.mouseSensitivity;
+        cinemachineFreeLook.m_YAxis.m_MaxSpeed = GameManager.instance.defaultMouseSensitivity.y * GameManager.instance.mouseSensitivity;
+    }
+
     public void rotateRaftHP(Vector3 lookAt)
     {
         // Boat Hp bar rotates, so player can see it
@@ -45,7 +70,6 @@ public class UIManager : MonoBehaviour
 
     public void UpdateHealth(float healthRatio)
     {
-        // healthRatio : 0 ~ 1
         playerHealthSlider.fillAmount = healthRatio;
     }
 
@@ -59,7 +83,31 @@ public class UIManager : MonoBehaviour
         playerHealthSlider.fillAmount = raftHealthRatio;
     }
 
-    public void SetActivePauseUI(bool active)
+    public void GameStart()
+    {
+        startMenu.SetActive(false);
+        Cursor.lockState = CursorLockMode.Locked;
+        StartCoroutine(ZoomIn());
+    }
+
+    IEnumerator ZoomIn()
+    {
+        while (Vector3.Distance(cinemachineBrain.transform.localPosition, zoomInPos) > 0.1f || Vector3.Distance(cinemachineBrain.transform.localEulerAngles, zoomInRot) > 0.1f)
+        {
+            yield return null;
+            cinemachineBrain.transform.localPosition = Vector3.Lerp(cinemachineBrain.transform.localPosition, zoomInPos, Time.deltaTime * 5f);
+            cinemachineBrain.transform.localEulerAngles = Vector3.Lerp(cinemachineBrain.transform.localEulerAngles, zoomInRot, Time.deltaTime * 5f);
+        }
+        cinemachineBrain.transform.localPosition = zoomInPos;
+        cinemachineBrain.transform.localEulerAngles = zoomInRot;
+        cinemachineBrain.enabled = true;
+
+        playerHpUI.SetActive(true);
+        raftHpUI.SetActive(true);
+        isPlaying = true;
+    }
+
+    public void SetActiveInGameMenu(bool active)
     {
         if (!active)
         {
@@ -71,14 +119,34 @@ public class UIManager : MonoBehaviour
             Cursor.lockState = CursorLockMode.None;
             Time.timeScale = 0f;
         }
-        pauseUI.SetActive(active);
+        inGameMenu.SetActive(active);
+    }
+
+    public void SetActiveStartSetting(bool active)
+    {
+        startAudioController.value = GameManager.instance.audioVolume;
+        startSettingUI.SetActive(active);
+    }
+
+    public void SetActiveInGameSetting(bool active)
+    {
+        inGameAudioController.value = GameManager.instance.audioVolume;
+        mouseSensitivityController.value = GameManager.instance.mouseSensitivity;
+        inGameSettingUI.SetActive(active);
+    }
+
+    public void GameRestart()
+    {
+        Time.timeScale = 1f;
+        UILoading.instance.LoadScene("Main", true);
     }
 
     public void SetActiveGameoverUI()
     {
+        isPlaying = false;
         Cursor.lockState = CursorLockMode.None;
+        gameoverUI.SetActive(true);
         StartCoroutine(FadeIn());
-        GameoverUI.SetActive(true);
     }
 
     IEnumerator FadeIn()
@@ -101,21 +169,9 @@ public class UIManager : MonoBehaviour
         Time.timeScale = 0f;
     }
 
-    public void SetActiveSetting(bool active)
-    {
-        settingUI.SetActive(active);
-    }
-
-    public void GameRestart()
-    {
-        Time.timeScale = 1f;
-        SceneManager.LoadScene("Main");
-    }
-
     public void GoStartMenu()
     {
         Time.timeScale = 1f;
-        SceneManager.LoadScene("StartMenu");
+        UILoading.instance.LoadScene("Main", false);
     }
-
 }

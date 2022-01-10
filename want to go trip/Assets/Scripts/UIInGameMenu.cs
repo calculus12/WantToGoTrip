@@ -8,52 +8,32 @@ using Cinemachine;
 
 public class UIInGameMenu : MonoBehaviour
 {
-    [HideInInspector] public AudioSource[] audioList;
-
+    [SerializeField] PlayerInput playerInput;
     [SerializeField] GameObject menu;
     [SerializeField] GameObject setting;
-    [SerializeField] GameObject gameOverUI;
     [SerializeField] TextMeshProUGUI volumeRate;
-    [SerializeField] Slider audioController;
     [SerializeField] TextMeshProUGUI mouseSensitivityRate;
-    [SerializeField] Slider mouseSensitivityController;
     [SerializeField] CinemachineFreeLook cinemachineFreeLook;
-
-    void Awake()
-    {
-        // Set audio volume
-        audioList = FindObjectsOfType<AudioSource>();
-        for (int i = 0; i < audioList.Length; i++)
-        {
-            audioList[i].volume = UIManager.instance.audioVolume;
-        }
-        audioController.value = UIManager.instance.audioVolume;
-
-        // Set mouse sensitivity
-        cinemachineFreeLook.m_XAxis.m_MaxSpeed = UIManager.instance.defaultMouseSensitivity.x * UIManager.instance.mouseSensitivity;
-        cinemachineFreeLook.m_YAxis.m_MaxSpeed = UIManager.instance.defaultMouseSensitivity.y * UIManager.instance.mouseSensitivity;
-        mouseSensitivityController.value = UIManager.instance.mouseSensitivity;
-    }
 
     void Update()
     {
         // Open and close in-game menu
-        if (Input.GetButtonDown("Cancel") && !gameOverUI.activeSelf)
+        if (playerInput.esc)
         {
             if (menu.activeSelf)
             {
-                UIManager.instance.SetActivePauseUI(false);
+                UIManager.instance.SetActiveInGameMenu(false);
             }
             else
             {
-                UIManager.instance.SetActivePauseUI(true);
+                UIManager.instance.SetActiveInGameMenu(true);
             }
         }
     }
 
     public void OnClickContinue()
     {
-        UIManager.instance.SetActivePauseUI(false);
+        UIManager.instance.SetActiveInGameMenu(false);
     }
 
     public void OnClickRestart()
@@ -65,11 +45,11 @@ public class UIInGameMenu : MonoBehaviour
     {
         if (setting.activeSelf)
         {
-            UIManager.instance.SetActiveSetting(false);
+            UIManager.instance.SetActiveInGameSetting(false);
         }
         else
         {
-            UIManager.instance.SetActiveSetting(true);
+            UIManager.instance.SetActiveInGameSetting(true);
         }
     }
 
@@ -81,19 +61,19 @@ public class UIInGameMenu : MonoBehaviour
     public void OnSliderAudioVolume(float value)
     {
         volumeRate.text = $"{value * 100:F1}%";
-        for (int i = 0; i < audioList.Length; i++)
+        for (int i = 0; i < UIManager.instance.audioList.Length; i++)
         {
-            audioList[i].volume = value;
+            UIManager.instance.audioList[i].volume = value;
         }
-        UIManager.instance.audioVolume = value;
+        GameManager.instance.audioVolume = value;
     }
 
     // Change mouse sensitivity
     public void OnSliderMouseSensitivity(float value)
     {
         mouseSensitivityRate.text = $"{value * 100:F1}%";
-        cinemachineFreeLook.m_XAxis.m_MaxSpeed = UIManager.instance.defaultMouseSensitivity.x * value;
-        cinemachineFreeLook.m_YAxis.m_MaxSpeed = UIManager.instance.defaultMouseSensitivity.y * value;
-        UIManager.instance.mouseSensitivity = value;
+        cinemachineFreeLook.m_XAxis.m_MaxSpeed = GameManager.instance.defaultMouseSensitivity.x * value;
+        cinemachineFreeLook.m_YAxis.m_MaxSpeed = GameManager.instance.defaultMouseSensitivity.y * value;
+        GameManager.instance.mouseSensitivity = value;
     }
 }
