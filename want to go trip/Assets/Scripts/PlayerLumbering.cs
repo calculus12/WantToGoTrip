@@ -38,8 +38,9 @@ public class PlayerLumbering : MonoBehaviour
 
         yield return new WaitForSeconds(0.4f);
         Ray ray = new Ray(axeRaycastStart.position, axeRaycastStart.forward);
+
         RaycastHit hit;
-        Debug.DrawRay(axeRaycastStart.position, axeRaycastStart.forward, Color.red, 0.5f);
+        Debug.DrawRay(axeRaycastStart.position, axeRaycastStart.forward * axeDistance, Color.red, 0.5f);
         if (Physics.Raycast(ray, out hit, axeDistance))
         {
             IDamageable target = hit.collider.GetComponent<IDamageable>();
