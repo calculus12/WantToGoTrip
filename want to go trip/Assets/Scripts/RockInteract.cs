@@ -12,11 +12,13 @@ public class RockInteract : HealthEntity
 
     private AudioSource rockAudioPlayer;
     private Rigidbody rockRigidbody;
+    private MovingBackward movingBackward;
 
     private void Start()
     {
         rockAudioPlayer = GetComponent<AudioSource>();
         rockRigidbody = GetComponent<Rigidbody>();
+        movingBackward = GetComponent<MovingBackward>();
 
         // Disable parent game object
         onDeath += () => { gameObject.SetActive(false); };
@@ -27,11 +29,18 @@ public class RockInteract : HealthEntity
         startingHealth = newHealth;
     }
 
+
     // Collision with raft
-
-
     private void OnCollisionEnter(Collision collision)
     {
+        if (collision.gameObject.tag == "Player")
+        {
+            ContactPoint cp = collision.GetContact(0);
+            PlayerMovement playerMovement = collision.collider.GetComponent<PlayerMovement>();
+            Vector3 normal = -cp.normal;
+            normal.y = 0f;
+            playerMovement.GetForce(normal);
+        }
         Debug.Log(collision.collider.name);
         if (collision.gameObject.tag == "Raft")
         {

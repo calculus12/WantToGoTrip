@@ -199,4 +199,15 @@ public class PlayerMovement : MonoBehaviour
             }
         }
     }
+
+    public void GetForce(Vector3 velocity)
+    {
+        while (velocity.magnitude >= 0.1f)
+        {
+            velocity = Vector3.Lerp(velocity, Vector3.zero, Time.deltaTime);
+            Debug.Log(velocity);
+            controller.Move(velocity * Time.deltaTime);
+        }
+
+    }
 }
