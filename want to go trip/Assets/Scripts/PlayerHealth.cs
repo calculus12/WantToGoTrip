@@ -46,6 +46,7 @@ public class PlayerHealth : HealthEntity
 
     private void Update()
     {
+
         if (health <= 0f && !dead)
         {
             Die();

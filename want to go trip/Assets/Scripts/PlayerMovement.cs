@@ -48,8 +48,8 @@ public class PlayerMovement : MonoBehaviour
 
     void LateUpdate()
     {
-        // Boat Hp bar rotates, so player can see it
-        UIManager.instance.rotateRaftHP(camTransform.forward);
+        // Raft Hp bar rotates, so player can see it
+        UIManager.instance.RotateRaftHP(camTransform.forward);
     }
 
     void Update()

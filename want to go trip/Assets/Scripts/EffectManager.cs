@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class EffectManager : MonoBehaviour
 {
-    public enum EffectType {splash};
+    public enum EffectType {splash, pow, poof};
 
     [SerializeField] GameObject[] effect;
     static EffectManager m_instance;

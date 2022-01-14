@@ -24,11 +24,11 @@ public class RaftHealth : HealthEntity
         UIManager.instance.UpdateRaftHealth(health /startingHealth);
     }
 
-    public override void OnDamage(float damage)
+    public override void OnDamage(float damage, Vector3 hitPoint, Vector3 hitNormal)
     {
         if (!dead)
         {
-            raftAudioPlayer.PlayOneShot(collisionSound);
+            raftAudioPlayer.PlayOneShot(collisionSound, 0.5f);
         }
         base.OnDamage(damage);
     }

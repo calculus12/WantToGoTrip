@@ -23,4 +23,21 @@ public class GameManager : MonoBehaviour
             Destroy(gameObject);
         }
     }
+
+    private float score = 0;
+    public bool isGameover { get; private set; }
+
+    private void Start()
+    {
+        FindObjectOfType<RaftHealth>().onDeath += EndGame;
+        FindObjectOfType<PlayerHealth>().onDeath += EndGame;
+    }
+
+    public void EndGame()
+    {
+        isGameover = true;
+        UIManager.instance.SetActiveGameoverUI();
+    }
+
+
 }
