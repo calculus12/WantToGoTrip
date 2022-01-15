@@ -24,9 +24,10 @@ public class RockInteract : HealthEntity
         onDeath += () => { gameObject.SetActive(false); };
     }
 
-    public void Setup(float newHealth)
+    public void Setup(float newHealth, float newDamage)
     {
         startingHealth = newHealth;
+        damageOnRaft = newDamage;
     }
 
 
