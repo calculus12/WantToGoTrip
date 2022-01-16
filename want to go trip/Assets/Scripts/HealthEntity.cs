@@ -20,7 +20,7 @@ public class HealthEntity : MonoBehaviour, IDamageable
 
         if (health <= 0 && !dead)
         {
-            Die();
+            Die(hitPosition);
         }
     }
 
@@ -45,6 +45,15 @@ public class HealthEntity : MonoBehaviour, IDamageable
     }
 
     public virtual void Die()
+    {
+        if (onDeath != null)
+        {
+            onDeath();
+        }
+        dead = true;
+    }
+
+    public virtual void Die(Vector3 diePosition)
     {
         if (onDeath != null)
         {

@@ -5,7 +5,7 @@ using UnityEngine;
 public class EffectManager : MonoBehaviour
 {
     // If you want to add a new effect, 
-    public enum EffectType {splash, mining}; // add effect type here and
+    public enum EffectType {splash, rockDest, mining}; // add effect type here and
     [SerializeField] GameObject[] effect; // add effect prefab in inspector
 
     static EffectManager m_instance;

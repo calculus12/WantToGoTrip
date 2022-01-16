@@ -49,7 +49,7 @@ public class RockInteract : HealthEntity
             if (raft != null)
             {
                 raft.OnDamage(damageOnRaft, collision.GetContact(0).point, collision.GetContact(0).normal);
-                Die();
+                Die(collision.GetContact(0).point);
             }
         }
     }
@@ -64,9 +64,9 @@ public class RockInteract : HealthEntity
         base.OnDamage(damage, hitPosition, hitNormal);
     }
 
-    public override void Die()
+    public override void Die(Vector3 hitPosition)
     {
         base.Die();
-        // rockAudioPlayer.PlayOneShot(destroySound);
+        EffectManager.instance.ActivateEffect(EffectManager.EffectType.rockDest, hitPosition, Quaternion.identity, Vector3.one);
     }
 }

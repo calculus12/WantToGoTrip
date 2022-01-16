@@ -62,7 +62,7 @@ public class UIManager : MonoBehaviour
         cinemachineFreeLook.m_YAxis.m_MaxSpeed = GameManager.instance.defaultMouseSensitivity.y * GameManager.instance.mouseSensitivity;
     }
 
-    public void rotateRaftHP(Vector3 lookAt)
+    public void RotateRaftHP(Vector3 lookAt)
     {
         // Boat Hp bar rotates, so player can see it
         raftHpUI.transform.LookAt(raftHpUI.transform.position + lookAt);
@@ -146,7 +146,7 @@ public class UIManager : MonoBehaviour
         isPlaying = false;
         Cursor.lockState = CursorLockMode.None;
         gameoverUI.SetActive(true);
-        StartCoroutine(FadeIn());
+        StartCoroutine(gameoverUIFadeIn());
     }
 
     IEnumerator gameoverUIFadeIn()
