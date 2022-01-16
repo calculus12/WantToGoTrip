@@ -3275,7 +3275,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 822323410}
-  m_LocalRotation: {x: 0.31428587, y: -0.008470684, z: 0.00280444, w: 0.94928646}
+  m_LocalRotation: {x: 0.3142849, y: -0.008799948, z: 0.0029134506, w: 0.9492835}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -3632,6 +3632,7 @@ Transform:
   - {fileID: 1107600398}
   - {fileID: 1828543823}
   - {fileID: 305179719}
+  - {fileID: 1436564409}
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -4539,6 +4540,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   controller: {fileID: 498715810}
   camTransform: {fileID: 963194228}
+  ropeState: {fileID: 1436564410}
   turnSmoothTime: 0.1
   turnSmoothVelocity: 0
   speed: 4
@@ -5995,7 +5997,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 963194225}
-  m_LocalRotation: {x: 0.29791358, y: -0.004914857, z: 0.0015338785, w: 0.954579}
+  m_LocalRotation: {x: 0.2979136, y: -0.0049149245, z: 0.0015338802, w: 0.954579}
   m_LocalPosition: {x: -2.1586318, y: -14.62617, z: 295.8308}
   m_LocalScale: {x: 2, y: 2, z: 2}
   m_Children: []
@@ -7322,6 +7324,54 @@ MonoBehaviour:
   menu: {fileID: 908354166}
   volumeRate: {fileID: 1846731484}
   audioController: {fileID: 625799493}
+--- !u!1 &1436564408
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1436564409}
+  - component: {fileID: 1436564410}
+  m_Layer: 0
+  m_Name: RopePlayerAnchor
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1436564409
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1436564408}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -0.017500043, y: 0.5580001, z: -0.23975}
+  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
+  m_Children: []
+  m_Father: {fileID: 835968279}
+  m_RootOrder: 12
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1436564410
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1436564408}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 310edb7fc58209d4fbe03d6bff912991, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  RopeRaftAnchor: {fileID: 1914810686}
+  ropeMaxLength: 10
+  ropeVector: {x: 0, y: 0, z: 0}
+  ropeLength: 0.5
+  inRangeOfRope: 0
 --- !u!1 &1438756653
 GameObject:
   m_ObjectHideFlags: 0
@@ -8579,7 +8629,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1816974027}
-  m_LocalRotation: {x: 0.29568875, y: -0.0049184235, z: 0.0015224195, w: 0.95527047}
+  m_LocalRotation: {x: 0.29568878, y: -0.0049184645, z: 0.0015224324, w: 0.95527047}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -8851,6 +8901,36 @@ RectTransform:
   m_AnchoredPosition: {x: -5, y: 0}
   m_SizeDelta: {x: -20, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!1 &1914810685
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1914810686}
+  m_Layer: 0
+  m_Name: RopeRaftAnchor
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1914810686
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1914810685}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -1.616, y: 0.981, z: 0.0898}
+  m_LocalScale: {x: 0.33333334, y: 0.5, z: 0.28571427}
+  m_Children: []
+  m_Father: {fileID: 4131725373551708}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1950233188
 GameObject:
   m_ObjectHideFlags: 0
@@ -9378,6 +9458,7 @@ Transform:
   - {fileID: 781566319}
   - {fileID: 667912820}
   - {fileID: 400057774}
+  - {fileID: 1914810686}
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
