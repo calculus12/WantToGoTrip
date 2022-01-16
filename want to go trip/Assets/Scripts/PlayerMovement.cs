@@ -29,6 +29,9 @@ public class PlayerMovement : MonoBehaviour
     private Vector3 velocity; // for gravity
     private float underwaterY = 0f;
     private bool jumpAnimationPlayed = false;
+
+    // Sum of all the calculated movement vectors
+    private Vector3 moveVector;
     
     // jump height when player jumps on water surface
     public float underwaterJumpHeight = 1f;
@@ -50,7 +53,7 @@ public class PlayerMovement : MonoBehaviour
     
     void Update()
     {
-
+        moveVector = Vector3.zero;
         if (state.isSailing)
         {
             animator.SetBool("isWalking", false);
@@ -71,7 +74,7 @@ public class PlayerMovement : MonoBehaviour
             state.isFalling = false;
             underwaterY = 0f;
             //Debug.Log(RaftController.velocity);
-            controller.Move(RaftController.velocity * Time.deltaTime);
+            moveVector += RaftController.velocity * Time.deltaTime;
             // prevent increasing velocity by gravity while player is grounded
             if (velocity.y < 0)
             {
@@ -100,7 +103,7 @@ public class PlayerMovement : MonoBehaviour
                 transform.rotation = Quaternion.Euler(0f, angle, 0f);
 
                 Vector3 moveDir = Quaternion.Euler(0f, targetAngle, 0f) * Vector3.forward;
-                controller.Move(moveDir.normalized * speed * Time.deltaTime);
+                moveVector += moveDir.normalized * speed * Time.deltaTime;
                 animator.SetBool("isWalking", true);
             }
             else
@@ -108,7 +111,7 @@ public class PlayerMovement : MonoBehaviour
                 animator.SetBool("isWalking", false);
             }
 
-            controller.Move(velocity * Time.deltaTime); // y-axis movement (move caused by gravity)
+            moveVector += velocity * Time.deltaTime; // y-axis movement (move caused by gravity)
         }
         else if (!state.isUnderwater && !state.isGrounded) // if player is falling
         {
@@ -128,17 +131,17 @@ public class PlayerMovement : MonoBehaviour
                 transform.rotation = Quaternion.Euler(0f, angle, 0f);
 
                 Vector3 moveDir = Quaternion.Euler(0f, targetAngle, 0f) * Vector3.forward;
-                controller.Move(moveDir.normalized * speed * Time.deltaTime);
+                moveVector += moveDir.normalized * speed * Time.deltaTime;
             }
 
-            controller.Move(velocity * Time.deltaTime);
+            moveVector += velocity * Time.deltaTime;
         }
         else if (state.isUnderwater)
         {
             if (state.isFalling)
             {
                 velocity.y += buoyancy * Time.deltaTime;
-                controller.Move(velocity * Time.deltaTime);
+                moveVector += velocity * Time.deltaTime;
                 if (velocity.y >= 0f)
                 {
                     velocity.y = 0f;
@@ -156,7 +159,7 @@ public class PlayerMovement : MonoBehaviour
                 transform.rotation = Quaternion.Euler(0f, angle, 0f);
 
                 Vector3 moveDir = Quaternion.Euler(0f, targetAngle, 0f) * Vector3.forward;
-                controller.Move(moveDir.normalized * speed * Time.deltaTime);
+                moveVector += moveDir.normalized * speed * Time.deltaTime;
             }
 
             if (!state.isFalling && input.space)
@@ -174,7 +177,7 @@ public class PlayerMovement : MonoBehaviour
                 velocity.y = 0f;
 
             underwaterY = Mathf.Lerp(underwaterY, velocity.y, Time.deltaTime * underwaterYDamping);
-            controller.Move(Vector3.up * underwaterY * Time.deltaTime);
+            moveVector += Vector3.up * underwaterY * Time.deltaTime;
 
             if (state.isSurface && !state.isFalling)
             {
@@ -186,12 +189,16 @@ public class PlayerMovement : MonoBehaviour
                         animator.SetTrigger("jump");
                         jumpAnimationPlayed = true;
                     }
-                    controller.Move(velocity * Time.deltaTime);
+                    moveVector += velocity * Time.deltaTime;
                 }
             }
         }
-        
-        if(!ropeState.inRangeOfRope)
+        // Movement control according to rope distance and movement vector
+        if (Vector3.Dot(ropeState.ropeVector.normalized, moveVector) + ropeState.ropeLength <= ropeState.ropeMaxLength + 1)
+        {
+            controller.Move(moveVector);
+        }
+        else
         {
             controller.Move(ropeState.ropeVector.normalized * 0.1f);
         }
