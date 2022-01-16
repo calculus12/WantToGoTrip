@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class RockInteract : HealthEntity
 {
-    // [SerializeField] ParticleSystem hitEffect;
+    [SerializeField] ParticleSystem hitEffect;
     // [SerializeField] AudioClip destroySound;
     [SerializeField] AudioClip hitSound;
     public float damageOnRaft = 15f;
@@ -42,7 +42,6 @@ public class RockInteract : HealthEntity
             normal.y = 0f;
             playerMovement.GetForce(normal);
         }
-        Debug.Log(collision.collider.name);
         if (collision.gameObject.tag == "Raft")
         {
             IDamageable raft = collision.collider.transform.parent.GetComponent<IDamageable>();
@@ -59,7 +58,6 @@ public class RockInteract : HealthEntity
     {
         if (!dead)
         {
-            // hitEffect.Play();
             rockAudioPlayer.PlayOneShot(hitSound);
         }
         base.OnDamage(damage, hitPosition, hitNormal);

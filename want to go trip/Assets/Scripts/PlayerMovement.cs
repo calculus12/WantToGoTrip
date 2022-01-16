@@ -14,7 +14,7 @@ public class PlayerMovement : MonoBehaviour
 
     public float turnSmoothTime = 0.1f; // player's rotation speed
     public float turnSmoothVelocity;
-    
+
     public float speed = 12f; // player's speed
     public float jumpHeight = 3f;
     public float speedWhileJump = 8f; // player's speed while jump
@@ -28,7 +28,8 @@ public class PlayerMovement : MonoBehaviour
     private Vector3 velocity; // for gravity
     private float underwaterY = 0f;
     private bool jumpAnimationPlayed = false;
-    
+    private bool movingBack = false;
+
     // jump height when player jumps on water surface
     public float underwaterJumpHeight = 1f;
 
@@ -58,15 +59,15 @@ public class PlayerMovement : MonoBehaviour
         if (state.isSailing)
         {
             animator.SetBool("isWalking", false);
-            
+
             /*
              * need to add sailing animation
              */
-            
+
             return; // player cannnot move while sailing
-            
+
         }
-            
+
 
         Vector3 direction = new Vector3(input.horizontal, 0f, input.vertical).normalized;
 
@@ -87,7 +88,7 @@ public class PlayerMovement : MonoBehaviour
             }
 
             // jump
-            
+
             if (state.canJump && input.space)
             {
                 velocity.y = Mathf.Sqrt(jumpHeight * -2f * gravityAcceleration);
@@ -101,7 +102,7 @@ public class PlayerMovement : MonoBehaviour
             // if player is moving then, play walk animation and make move
             if (direction.magnitude >= 0.1f) // if player is moving
             {
-                float targetAngle = Mathf.Atan2(direction.x, direction.z) * Mathf.Rad2Deg 
+                float targetAngle = Mathf.Atan2(direction.x, direction.z) * Mathf.Rad2Deg
                                     + camTransform.eulerAngles.y;
                 float angle = Mathf.SmoothDampAngle(transform.eulerAngles.y, targetAngle, ref turnSmoothVelocity,
                     turnSmoothTime);
@@ -154,10 +155,10 @@ public class PlayerMovement : MonoBehaviour
                 }
 
             }
-            
+
             if (direction.magnitude >= 0.1f) // if player is moving
             {
-                float targetAngle = Mathf.Atan2(direction.x, direction.z) * Mathf.Rad2Deg 
+                float targetAngle = Mathf.Atan2(direction.x, direction.z) * Mathf.Rad2Deg
                                     + camTransform.eulerAngles.y;
                 float angle = Mathf.SmoothDampAngle(transform.eulerAngles.y, targetAngle, ref turnSmoothVelocity,
                     turnSmoothTime);
@@ -200,8 +201,11 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
+
     public void GetForce(Vector3 velocity)
     {
+        movingBack = true;
+
         while (velocity.magnitude >= 0.1f)
         {
             velocity = Vector3.Lerp(velocity, Vector3.zero, Time.deltaTime);
@@ -209,5 +213,7 @@ public class PlayerMovement : MonoBehaviour
             controller.Move(velocity * Time.deltaTime);
         }
 
+        movingBack = false;
     }
+
 }
