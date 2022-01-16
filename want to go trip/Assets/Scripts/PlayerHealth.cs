@@ -12,6 +12,7 @@ public class PlayerHealth : HealthEntity
     public float startingOxygen = 100f;
     public float oxygenRecoverySpeed = 10f;
     public float oxygenDecreaseSpeed = 4f;
+    public float healthDecreasingByNoOxygen = 3f;
     public SailingControl sailing;
 
     private PlayerState state;
@@ -45,14 +46,20 @@ public class PlayerHealth : HealthEntity
 
     private void Update()
     {
+
         if (health <= 0f && !dead)
         {
             Die();
         }
+        
+        if (oxygen <= 0f)
+        {
+            health = Mathf.Clamp(health - Time.deltaTime * healthDecreasingByNoOxygen, 0, startingHealth);
+        }
 
         if (state.isSubmerging)
         {
-            oxygen -= Time.deltaTime * oxygenDecreaseSpeed;
+            oxygen = Mathf.Clamp(oxygen - Time.deltaTime * oxygenDecreaseSpeed, 0, startingOxygen);
         }
         else
         {

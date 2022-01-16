@@ -80,7 +80,7 @@ public class UIManager : MonoBehaviour
 
     public void UpdateRaftHealth(float raftHealthRatio)
     {
-        playerHealthSlider.fillAmount = raftHealthRatio;
+        raftHealthSlider.fillAmount = raftHealthRatio;
     }
 
     public void GameStart()
@@ -149,7 +149,7 @@ public class UIManager : MonoBehaviour
         StartCoroutine(FadeIn());
     }
 
-    IEnumerator FadeIn()
+    IEnumerator gameoverUIFadeIn()
     {
         // Fade in background until alpha <= 0.4
         // Fade in text until alpha <= 1

@@ -24,6 +24,16 @@ public class HealthEntity : MonoBehaviour, IDamageable
         }
     }
 
+    public virtual void OnDamage(float damage)
+    {
+        health -= damage;
+        
+        if (health <= 0 && !dead)
+        {
+            Die();
+        }
+    }
+
     public virtual void RestoreHealth(float restoreHealth)
     {
         if (dead)
