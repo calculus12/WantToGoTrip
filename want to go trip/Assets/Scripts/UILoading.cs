@@ -13,6 +13,7 @@ public class UILoading : MonoBehaviour
     [SerializeField] TextMeshProUGUI progressRate;
     static UILoading l_instance;
     string nextScene;
+    bool isRestart;
 
     public static UILoading instance
     {
@@ -39,8 +40,11 @@ public class UILoading : MonoBehaviour
         DontDestroyOnLoad(gameObject);
     }
 
-    public void LoadScene(string sceneName)
+    public void LoadScene(string sceneName, bool isRestart)
     {
+        this.isRestart = isRestart;
+        progressBar.fillAmount = 0f;
+        progressRate.text = $"{0f:F1}%";
         gameObject.SetActive(true);
         SceneManager.sceneLoaded += OnSceneLoaded;
         nextScene = sceneName;
@@ -50,6 +54,9 @@ public class UILoading : MonoBehaviour
     // Fade out when scene is 100% loaded
     void OnSceneLoaded(Scene arg0, LoadSceneMode arg1)
     {
+        if (isRestart) {
+            UIManager.instance.GameStart();
+        }
         StartCoroutine(Fade(false));
         SceneManager.sceneLoaded -= OnSceneLoaded;
     }

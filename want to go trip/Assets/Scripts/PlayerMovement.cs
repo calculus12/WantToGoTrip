@@ -43,7 +43,6 @@ public class PlayerMovement : MonoBehaviour
         animator = GetComponent<Animator>();
         input = GetComponent<PlayerInput>();
         state = GetComponent<PlayerState>();
-        Cursor.lockState = CursorLockMode.Locked;
     }
 
     void LateUpdate()

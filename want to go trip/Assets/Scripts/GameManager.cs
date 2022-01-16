@@ -2,6 +2,10 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
+    public Vector2 defaultMouseSensitivity;
+    [Range(0f, 1f)] public float audioVolume;
+    [Range(0f, 1f)] public float mouseSensitivity;
+
     private static GameManager m_instance; // singletone variable
 
     public static GameManager instance // singletone property
@@ -22,5 +26,6 @@ public class GameManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
+        DontDestroyOnLoad(gameObject);
     }
 }
