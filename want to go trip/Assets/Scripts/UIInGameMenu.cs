@@ -13,7 +13,6 @@ public class UIInGameMenu : MonoBehaviour
     [SerializeField] GameObject setting;
     [SerializeField] TextMeshProUGUI volumeRate;
     [SerializeField] TextMeshProUGUI mouseSensitivityRate;
-    [SerializeField] CinemachineFreeLook cinemachineFreeLook;
 
     void Update()
     {
@@ -61,19 +60,13 @@ public class UIInGameMenu : MonoBehaviour
     public void OnSliderAudioVolume(float value)
     {
         volumeRate.text = $"{value * 100:F1}%";
-        for (int i = 0; i < UIManager.instance.audioList.Length; i++)
-        {
-            UIManager.instance.audioList[i].volume = value;
-        }
-        GameManager.instance.audioVolume = value;
+        UIManager.instance.UpdateAudioVolumeData(value);
     }
 
     // Change mouse sensitivity
     public void OnSliderMouseSensitivity(float value)
     {
         mouseSensitivityRate.text = $"{value * 100:F1}%";
-        cinemachineFreeLook.m_XAxis.m_MaxSpeed = GameManager.instance.defaultMouseSensitivity.x * value;
-        cinemachineFreeLook.m_YAxis.m_MaxSpeed = GameManager.instance.defaultMouseSensitivity.y * value;
-        GameManager.instance.mouseSensitivity = value;
+        UIManager.instance.UpdateMouseSensitivityData(value);
     }
 }
