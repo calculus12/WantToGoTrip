@@ -49,7 +49,7 @@ public class RockInteract : HealthEntity
             if (raft != null)
             {
                 raft.OnDamage(damageOnRaft, collision.GetContact(0).point, collision.GetContact(0).normal);
-                Die(collision.GetContact(0).point);
+                OnDamage(health, collision.GetContact(0).point, collision.GetContact(0).normal);
             }
         }
     }

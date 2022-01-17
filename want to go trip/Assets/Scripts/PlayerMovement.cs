@@ -25,7 +25,7 @@ public class PlayerMovement : MonoBehaviour
     public float buoyancy = 15f;
     public float underwaterYDamping = 0.5f;
 
-    private Vector3 velocity; // for gravity
+    private Vector3 velocity; // only for y-axis movement (gravity or buoyancy)
     private float underwaterY = 0f;
     private bool jumpAnimationPlayed = false;
     private bool movingBack = false;
@@ -38,6 +38,9 @@ public class PlayerMovement : MonoBehaviour
 
     // player animator
     private Animator animator;
+
+    // player's final moving vector
+    private Vector3 moveVector;
 
     void Start()
     {
@@ -54,6 +57,7 @@ public class PlayerMovement : MonoBehaviour
 
     void Update()
     {
+        moveVector = Vector3.zero;
 
         if (state.isSailing)
         {
@@ -77,7 +81,7 @@ public class PlayerMovement : MonoBehaviour
             //Debug.Log(RaftController.velocity);
             if (state.isOnRaft)
             {
-                controller.Move(RaftController.velocity * Time.deltaTime);
+                moveVector += RaftController.velocity * Time.deltaTime; // if player is on raft then plaeyr should be moved with raft's same velocity
 
             }
             // prevent increasing velocity by gravity while player is grounded
@@ -101,14 +105,16 @@ public class PlayerMovement : MonoBehaviour
             // if player is moving then, play walk animation and make move
             if (direction.magnitude >= 0.1f) // if player is moving
             {
+                /// for smooth rotation
                 float targetAngle = Mathf.Atan2(direction.x, direction.z) * Mathf.Rad2Deg
                                     + camTransform.eulerAngles.y;
                 float angle = Mathf.SmoothDampAngle(transform.eulerAngles.y, targetAngle, ref turnSmoothVelocity,
                     turnSmoothTime);
                 transform.rotation = Quaternion.Euler(0f, angle, 0f);
+                /// for smooth rotation
 
                 Vector3 moveDir = Quaternion.Euler(0f, targetAngle, 0f) * Vector3.forward;
-                controller.Move(moveDir.normalized * speed * Time.deltaTime);
+                moveVector += moveDir.normalized * speed * Time.deltaTime;
                 animator.SetBool("isWalking", true);
             }
             else
@@ -116,7 +122,7 @@ public class PlayerMovement : MonoBehaviour
                 animator.SetBool("isWalking", false);
             }
 
-            controller.Move(velocity * Time.deltaTime); // y-axis movement (move caused by gravity)
+            moveVector += velocity * Time.deltaTime; // y-axis movement (move caused by gravity)
         }
         else if (!state.isUnderwater && !state.isOnRaft && !state.isGrounded) // if player is falling
         {
@@ -129,24 +135,26 @@ public class PlayerMovement : MonoBehaviour
 
             if (direction.magnitude >= 0.1f) // if player is moving
             {
+                /// for smooth rotation
                 float targetAngle = Mathf.Atan2(direction.x, direction.z) * Mathf.Rad2Deg
                                     + camTransform.eulerAngles.y;
                 float angle = Mathf.SmoothDampAngle(transform.eulerAngles.y, targetAngle, ref turnSmoothVelocity,
                     turnSmoothTime);
                 transform.rotation = Quaternion.Euler(0f, angle, 0f);
+                /// for smooth rotation
 
                 Vector3 moveDir = Quaternion.Euler(0f, targetAngle, 0f) * Vector3.forward;
-                controller.Move(moveDir.normalized * speed * Time.deltaTime);
+                moveVector += moveDir.normalized * speed * Time.deltaTime;
             }
 
-            controller.Move(velocity * Time.deltaTime);
+            moveVector += velocity * Time.deltaTime; // y-axis movement (move caused by gravity)
         }
         else if (state.isUnderwater)
         {
             if (state.isFalling)
             {
                 velocity.y += buoyancy * Time.deltaTime;
-                controller.Move(velocity * Time.deltaTime);
+                moveVector += velocity * Time.deltaTime;
                 if (velocity.y >= 0f)
                 {
                     velocity.y = 0f;
@@ -157,14 +165,17 @@ public class PlayerMovement : MonoBehaviour
 
             if (direction.magnitude >= 0.1f) // if player is moving
             {
+                /// for smooth rotation
                 float targetAngle = Mathf.Atan2(direction.x, direction.z) * Mathf.Rad2Deg
                                     + camTransform.eulerAngles.y;
                 float angle = Mathf.SmoothDampAngle(transform.eulerAngles.y, targetAngle, ref turnSmoothVelocity,
                     turnSmoothTime);
                 transform.rotation = Quaternion.Euler(0f, angle, 0f);
+                /// for smooth rotation
 
                 Vector3 moveDir = Quaternion.Euler(0f, targetAngle, 0f) * Vector3.forward;
-                controller.Move(moveDir.normalized * speed * Time.deltaTime);
+                moveVector += moveDir.normalized * speed * Time.deltaTime;
+                // should play swimming animation
             }
 
             if (!state.isFalling && input.space)
@@ -182,7 +193,7 @@ public class PlayerMovement : MonoBehaviour
                 velocity.y = 0f;
 
             underwaterY = Mathf.Lerp(underwaterY, velocity.y, Time.deltaTime * underwaterYDamping);
-            controller.Move(Vector3.up * underwaterY * Time.deltaTime);
+            moveVector += Vector3.up * underwaterY * Time.deltaTime;
 
             if (state.isSurface && !state.isFalling)
             {
@@ -194,10 +205,12 @@ public class PlayerMovement : MonoBehaviour
                         animator.SetTrigger("jump");
                         jumpAnimationPlayed = true;
                     }
-                    controller.Move(velocity * Time.deltaTime);
+                    moveVector += velocity * Time.deltaTime;
                 }
             }
         }
+
+        controller.Move(moveVector);
     }
 
 

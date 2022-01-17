@@ -43,6 +43,4 @@ public class GameManager : MonoBehaviour
         isGameover = true;
         UIManager.instance.SetActiveGameoverUI();
     }
-
-
 }

@@ -14,6 +14,7 @@ public class HealthEntity : MonoBehaviour, IDamageable
         health = startingHealth;
     }
 
+    // Health Entitiy 체력 감소는 무조건 OnDamage 함수 이용할 것 -> 상속받은 스크립트에서 명시적으로 Die() 사용 X.
     public virtual void OnDamage(float damage, Vector3 hitPosition, Vector3 hitNormal)
     {
         health -= damage;
@@ -34,6 +35,7 @@ public class HealthEntity : MonoBehaviour, IDamageable
         }
     }
 
+    // Health Entity 체력 증가는 무조건 RestoreHealth 함수 이용할 것!
     public virtual void RestoreHealth(float restoreHealth)
     {
         if (dead)

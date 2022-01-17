@@ -46,15 +46,12 @@ public class PlayerHealth : HealthEntity
 
     private void Update()
     {
+        if (dead)
+            return;
 
-        if (health <= 0f && !dead)
-        {
-            Die();
-        }
-        
         if (oxygen <= 0f)
         {
-            health = Mathf.Clamp(health - Time.deltaTime * healthDecreasingByNoOxygen, 0, startingHealth);
+            OnDamage(Time.deltaTime * healthDecreasingByNoOxygen);
         }
 
         if (state.isSubmerging)
@@ -82,7 +79,6 @@ public class PlayerHealth : HealthEntity
         /*
          * play death animation
          */
-        UIManager.instance.SetActiveGameoverUI();
 
         playerMovement.enabled = false;
         playerLumbering.enabled = false;
