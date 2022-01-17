@@ -39,10 +39,6 @@ public class UIStartMenu : MonoBehaviour
     public void OnSliderAudioVolume(float value)
     {
         volumeRate.text = $"{value * 100:F1}%";
-        for (int i = 0; i < UIManager.instance.audioList.Length; i++)
-        {
-            UIManager.instance.audioList[i].volume = value;
-        }
-        GameManager.instance.audioVolume = value;
+        UIManager.instance.UpdateAudioVolumeData(value);
     }
 }

@@ -54,12 +54,12 @@ public class UIManager : MonoBehaviour
         // Initialize audio volume
         for (int i = 0; i < audioList.Length; i++)
         {
-            audioList[i].volume = GameManager.instance.audioVolume;
+            audioList[i].volume = SettingData.instance.audioVolume;
         }
 
         // Initialize mouse sensitivity
-        cinemachineFreeLook.m_XAxis.m_MaxSpeed = GameManager.instance.defaultMouseSensitivity.x * GameManager.instance.mouseSensitivity;
-        cinemachineFreeLook.m_YAxis.m_MaxSpeed = GameManager.instance.defaultMouseSensitivity.y * GameManager.instance.mouseSensitivity;
+        cinemachineFreeLook.m_XAxis.m_MaxSpeed = SettingData.instance.defaultMouseSensitivity.x * SettingData.instance.mouseSensitivity;
+        cinemachineFreeLook.m_YAxis.m_MaxSpeed = SettingData.instance.defaultMouseSensitivity.y * SettingData.instance.mouseSensitivity;
     }
 
     public void RotateRaftHP(Vector3 lookAt)
@@ -124,15 +124,31 @@ public class UIManager : MonoBehaviour
 
     public void SetActiveStartSetting(bool active)
     {
-        startAudioController.value = GameManager.instance.audioVolume;
+        startAudioController.value = SettingData.instance.audioVolume;
         startSettingUI.SetActive(active);
     }
 
     public void SetActiveInGameSetting(bool active)
     {
-        inGameAudioController.value = GameManager.instance.audioVolume;
-        mouseSensitivityController.value = GameManager.instance.mouseSensitivity;
+        inGameAudioController.value = SettingData.instance.audioVolume;
+        mouseSensitivityController.value = SettingData.instance.mouseSensitivity;
         inGameSettingUI.SetActive(active);
+    }
+
+    public void UpdateAudioVolumeData(float value)
+    {
+        for (int i = 0; i < audioList.Length; i++)
+        {
+            audioList[i].volume = value;
+        }
+        SettingData.instance.audioVolume = value;
+    }
+
+    public void UpdateMouseSensitivityData(float value)
+    {
+        cinemachineFreeLook.m_XAxis.m_MaxSpeed = SettingData.instance.defaultMouseSensitivity.x * value;
+        cinemachineFreeLook.m_YAxis.m_MaxSpeed = SettingData.instance.defaultMouseSensitivity.y * value;
+        SettingData.instance.mouseSensitivity = value;
     }
 
     public void GameRestart()

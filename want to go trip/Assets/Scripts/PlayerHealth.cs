@@ -82,7 +82,6 @@ public class PlayerHealth : HealthEntity
         /*
          * play death animation
          */
-        UIManager.instance.SetActiveGameoverUI();
 
         playerMovement.enabled = false;
         playerLumbering.enabled = false;
