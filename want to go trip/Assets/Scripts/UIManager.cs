@@ -20,6 +20,7 @@ public class UIManager : MonoBehaviour
     [SerializeField] GameObject gameoverUI;
     [SerializeField] GameObject playerHpUI;
     [SerializeField] GameObject raftHpUI;
+    [SerializeField] Inventory inventory;
     [SerializeField] Image playerHealthSlider;
     [SerializeField] Image playerOxygenSlider;
     [SerializeField] Image raftHealthSlider;
@@ -104,6 +105,7 @@ public class UIManager : MonoBehaviour
 
         playerHpUI.SetActive(true);
         raftHpUI.SetActive(true);
+        inventory.gameObject.SetActive(true);
         isPlaying = true;
     }
 
@@ -189,5 +191,10 @@ public class UIManager : MonoBehaviour
     {
         Time.timeScale = 1f;
         UILoading.instance.LoadScene("Main", false);
+    }
+
+    public void AcquireItem(Item _item)
+    {
+        inventory.AcquireItem(_item);
     }
 }
