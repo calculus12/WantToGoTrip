@@ -13,6 +13,8 @@ public class RockInteract : HealthEntity
     private AudioSource rockAudioPlayer;
     private Rigidbody rockRigidbody;
     private MovingBackward movingBackward;
+    
+    [SerializeField] Item item;
 
     private void Start()
     {
@@ -22,6 +24,7 @@ public class RockInteract : HealthEntity
 
         // Disable parent game object
         onDeath += () => { gameObject.SetActive(false); };
+        onDeath += () => { UIManager.instance.AcquireItem(item); };
     }
 
     public void Setup(float newHealth, float newDamage)
