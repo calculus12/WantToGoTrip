@@ -82,7 +82,6 @@ public class PlayerMovement : MonoBehaviour
             if (state.isOnRaft)
             {
                 moveVector += RaftController.velocity * Time.deltaTime; // if player is on raft then plaeyr should be moved with raft's same velocity
-
             }
             // prevent increasing velocity by gravity while player is grounded
             if (velocity.y < 0)

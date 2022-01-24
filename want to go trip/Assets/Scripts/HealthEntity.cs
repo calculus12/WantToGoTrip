@@ -32,6 +32,7 @@ public class HealthEntity : MonoBehaviour, IDamageable
         if (health <= 0 && !dead)
         {
             Die();
+            
         }
     }
 
