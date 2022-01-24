@@ -11,6 +11,7 @@ public class PlayerMovement : MonoBehaviour
     public CharacterController controller;
 
     public Transform camTransform;
+    public RopeState  ropeState;
 
     public float turnSmoothTime = 0.1f; // player's rotation speed
     public float turnSmoothVelocity;
@@ -208,8 +209,15 @@ public class PlayerMovement : MonoBehaviour
                 }
             }
         }
-
-        controller.Move(moveVector);
+        // Movement control according to rope distance and movement vector
+        if (Vector3.Dot(ropeState.ropeVector.normalized, moveVector) + ropeState.ropeLength <= ropeState.ropeMaxLength + 1)
+        {
+            controller.Move(moveVector);
+        }
+        else
+        {
+            controller.Move(ropeState.ropeVector.normalized * 0.1f);
+        }
     }
 
 
