@@ -35,6 +35,8 @@ public class UIManager : MonoBehaviour
     [SerializeField] Vector3 zoomInPos;
     [SerializeField] Vector3 zoomInRot;
 
+    [SerializeField] TerrainMove terrainMove;
+
     static UIManager m_instance;
     public static UIManager instance
     {
@@ -106,6 +108,7 @@ public class UIManager : MonoBehaviour
         playerHpUI.SetActive(true);
         raftHpUI.SetActive(true);
         inventory.gameObject.SetActive(true);
+        terrainMove.enabled = true;
         isPlaying = true;
     }
 
