@@ -29,7 +29,7 @@ public class PlayerMovement : MonoBehaviour
     private Vector3 velocity; // only for y-axis movement (gravity or buoyancy)
     private float underwaterY = 0f;
     private bool jumpAnimationPlayed = false;
-    private bool movingBack = false;
+    private bool gettingForce = false;
 
     // jump height when player jumps on water surface
     public float underwaterJumpHeight = 1f;
@@ -216,23 +216,29 @@ public class PlayerMovement : MonoBehaviour
         }
         else
         {
-            controller.Move(ropeState.ropeVector.normalized * 0.1f);
+           if(!gettingForce)
+           StartCoroutine(GetForce(ropeState.ropeVector.normalized * 4f));
         }
     }
 
 
-    public void GetForce(Vector3 velocity)
+    public IEnumerator GetForce(Vector3 velocity)
     {
-        movingBack = true;
+        gettingForce = true;
+        float tempSpeed = speed;
+        Debug.Log(tempSpeed);
+        speed = 0.5f;
 
-        while (velocity.magnitude >= 0.1f)
+        while (velocity.magnitude >= 1f)
         {
             velocity = Vector3.Lerp(velocity, Vector3.zero, Time.deltaTime);
             Debug.Log(velocity);
+            yield return new WaitForFixedUpdate();
             controller.Move(velocity * Time.deltaTime);
         }
-
-        movingBack = false;
+        Debug.Log(tempSpeed);
+        speed = tempSpeed;
+        gettingForce = false;
     }
 
 }

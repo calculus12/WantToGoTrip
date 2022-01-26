@@ -42,6 +42,8 @@ public class PlayerState : MonoBehaviour
 
     public bool isSubmerging { get; private set; }
 
+    //public int currentEquipment { get; set; } // Indicate which equipment player is equipping
+
     void Update()
     {
         isOnRaft = Physics.CheckSphere(groundCheck1.position, groundDistance, raftMask) |

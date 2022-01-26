@@ -28,7 +28,6 @@ public class PlayerHealth : HealthEntity
         playerAudioPlayer = GetComponent<AudioSource>();
         playerAnimator = GetComponent<Animator>();
         playerMovement = GetComponent<PlayerMovement>();
-        playerLumbering = GetComponent<PlayerLumbering>();
         oxygen = startingOxygen;
     }
 
@@ -40,7 +39,6 @@ public class PlayerHealth : HealthEntity
         UIManager.instance.UpdateOxygen(oxygen / startingOxygen);
 
         playerMovement.enabled = true;
-        playerLumbering.enabled = true;
         sailing.enabled = true;
     }
 
@@ -81,7 +79,6 @@ public class PlayerHealth : HealthEntity
          */
 
         playerMovement.enabled = false;
-        playerLumbering.enabled = false;
         sailing.enabled = false;
     }
 }

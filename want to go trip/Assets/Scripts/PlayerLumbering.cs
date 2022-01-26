@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class PlayerLumbering : MonoBehaviour
 {
-    Animator animator;
-    PlayerInput input;
-    PlayerState state;
+    public Animator animator;
+    public PlayerInput input;
+    public PlayerState state;
     
     public Transform axeRaycastStart;
 
@@ -16,9 +16,7 @@ public class PlayerLumbering : MonoBehaviour
     
     void Start()
     {
-        animator = GetComponent<Animator>();
-        input = GetComponent<PlayerInput>();
-        state = GetComponent<PlayerState>();
+
     }
 
 

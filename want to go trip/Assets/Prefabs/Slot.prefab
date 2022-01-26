@@ -229,6 +229,8 @@ MonoBehaviour:
   textCount: {fileID: 2749277468565901300}
   player: {fileID: 0}
   equipments: []
+  dropMinY: 0
+  dropMaxY: 0
 --- !u!1 &2749277469510953754
 GameObject:
   m_ObjectHideFlags: 0
@@ -265,7 +267,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 90, y: 90}
+  m_SizeDelta: {x: 70, y: 70}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &2749277469510953759
 CanvasRenderer:

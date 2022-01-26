@@ -15,6 +15,8 @@ public class Slot : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHand
     [HideInInspector] public Transform[] equipments;
     Image slotImage;
 
+    [SerializeField] float dropMaxY;
+
     void Awake()
     {
         slotImage = GetComponent<Image>();
@@ -114,7 +116,7 @@ public class Slot : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHand
     public void OnEndDrag(PointerEventData eventData)
     {
         SetImageRGB(1f, 1f, 1f);
-        if (eventData.position.x < 375f || eventData.position.x > 1545f || eventData.position.y < 35f || eventData.position.y > 165f)
+        if (eventData.position.y > dropMaxY) // drop item
         {
             // If player is wearing equipment, unwear it
             if (item.itemType == Item.ItemType.Equipment)
@@ -128,7 +130,7 @@ public class Slot : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHand
                 }
             }
             // Drop item
-            Instantiate(item.itemObj, player.position + player.forward * 3f + Vector3.up * 1.5f, Quaternion.identity);
+            Instantiate(item.itemObj, player.position + player.forward * 1.5f + Vector3.up * 1.5f, Quaternion.identity);
             DecreaseItemCount();
         }
         SlotToDrag.instance.EndMove();
