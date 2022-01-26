@@ -16,7 +16,6 @@ public class PlayerInput : MonoBehaviour // Manage player's input
     public bool w { get; private set; }
     public bool a { get; private set; }
     public bool d { get; private set; }
-    public bool esc { get; private set; }
     public bool alpha1 { get; private set; }
     public bool alpha2 { get; private set; }
     public bool alpha3 { get; private set; }
@@ -30,62 +29,85 @@ public class PlayerInput : MonoBehaviour // Manage player's input
     public bool tab { get; private set; }
 
     [SerializeField] CinemachineFreeLook cinemachineFreeLook;
-    float cinemachineOriginXSpeed;
-    float cinemachineOriginYSpeed;
+    [SerializeField] SettingData settingData;
     bool cursorConfined;
 
-    void Awake()
+    void OnEnable()
     {
-        cinemachineOriginXSpeed = cinemachineFreeLook.m_XAxis.m_MaxSpeed;
-        cinemachineOriginYSpeed = cinemachineFreeLook.m_YAxis.m_MaxSpeed;   
+        cinemachineFreeLook.m_XAxis.m_MaxSpeed = settingData.defaultMouseSensitivity.x * settingData.mouseSensitivity;
+        cinemachineFreeLook.m_YAxis.m_MaxSpeed = settingData.defaultMouseSensitivity.y * settingData.mouseSensitivity;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (UIManager.instance.isPlaying)
+        mouseX = Input.GetAxis("Mouse X");
+        mouseY = Input.GetAxis("Mouse Y");
+        horizontal = Input.GetAxis("Horizontal");
+        vertical = Input.GetAxis("Vertical");
+        space = Input.GetButton("Jump");
+        ctrl = Input.GetKey(KeyCode.LeftControl);
+        f = Input.GetKeyDown(KeyCode.F);
+        w = Input.GetKeyDown(KeyCode.W);
+        a = Input.GetKeyDown(KeyCode.A);
+        d = Input.GetKeyDown(KeyCode.D);
+        alpha1 = Input.GetKeyDown(KeyCode.Alpha1);
+        alpha2 = Input.GetKeyDown(KeyCode.Alpha2);
+        alpha3 = Input.GetKeyDown(KeyCode.Alpha3);
+        alpha4 = Input.GetKeyDown(KeyCode.Alpha4);
+        alpha5 = Input.GetKeyDown(KeyCode.Alpha5);
+        alpha6 = Input.GetKeyDown(KeyCode.Alpha6);
+        alpha7 = Input.GetKeyDown(KeyCode.Alpha7);
+        alpha8 = Input.GetKeyDown(KeyCode.Alpha8);
+        alpha9 = Input.GetKeyDown(KeyCode.Alpha9);
+        alpha0 = Input.GetKeyDown(KeyCode.Alpha0);
+        tab = Input.GetKeyDown(KeyCode.Tab);
+        if (tab)
         {
-            mouseX = Input.GetAxis("Mouse X");
-            mouseY = Input.GetAxis("Mouse Y");
-            horizontal = Input.GetAxis("Horizontal");
-            vertical = Input.GetAxis("Vertical");
-            space = Input.GetButton("Jump");
-            ctrl = Input.GetKey(KeyCode.LeftControl);
-            f = Input.GetKeyDown(KeyCode.F);
-            w = Input.GetKeyDown(KeyCode.W);
-            a = Input.GetKeyDown(KeyCode.A);
-            d = Input.GetKeyDown(KeyCode.D);
-            esc = Input.GetKeyDown(KeyCode.Escape);
-            alpha1 = Input.GetKeyDown(KeyCode.Alpha1);
-            alpha2 = Input.GetKeyDown(KeyCode.Alpha2);
-            alpha3 = Input.GetKeyDown(KeyCode.Alpha3);
-            alpha4 = Input.GetKeyDown(KeyCode.Alpha4);
-            alpha5 = Input.GetKeyDown(KeyCode.Alpha5);
-            alpha6 = Input.GetKeyDown(KeyCode.Alpha6);
-            alpha7 = Input.GetKeyDown(KeyCode.Alpha7);
-            alpha8 = Input.GetKeyDown(KeyCode.Alpha8);
-            alpha9 = Input.GetKeyDown(KeyCode.Alpha9);
-            alpha0 = Input.GetKeyDown(KeyCode.Alpha0);
-            tab = Input.GetKeyDown(KeyCode.Tab);
-            
-            if (tab)
-            {
-                cursorConfined = !cursorConfined;
-            }
+            cursorConfined = !cursorConfined;
             if (cursorConfined)
             {
-                leftClick = false;
-                 // If cursor is confined, block camera rotation
+                // If cursor is confined, block camera rotation and leftClick
                 cinemachineFreeLook.m_XAxis.m_MaxSpeed = 0f;
                 cinemachineFreeLook.m_YAxis.m_MaxSpeed = 0f;
+                leftClick = false;
             }
             else
             {
-                leftClick = Input.GetMouseButton(0);
                 // If cursor is locked, do not block camera rotation
-                cinemachineFreeLook.m_XAxis.m_MaxSpeed = cinemachineOriginXSpeed;
-                cinemachineFreeLook.m_YAxis.m_MaxSpeed = cinemachineOriginYSpeed;
+                cinemachineFreeLook.m_XAxis.m_MaxSpeed = settingData.defaultMouseSensitivity.x * settingData.mouseSensitivity;
+                cinemachineFreeLook.m_YAxis.m_MaxSpeed = settingData.defaultMouseSensitivity.y * settingData.mouseSensitivity;
             }
         }
+        if (!cursorConfined)
+        {
+            leftClick = Input.GetMouseButton(0);
+        }
+    }
+
+    void OnDisable() {
+        mouseX = 0f;
+        mouseY = 0f;
+        horizontal = 0f;
+        vertical = 0f;
+        space = false;
+        ctrl = false;
+        f = false;
+        w = false;
+        a = false;
+        d = false;
+        alpha1 = false;
+        alpha2 = false;
+        alpha3 = false;
+        alpha4 = false;
+        alpha5 = false;
+        alpha6 = false;
+        alpha7 = false;
+        alpha8 = false;
+        alpha9 = false;
+        alpha0 = false;
+        tab = false;
+        cinemachineFreeLook.m_XAxis.m_MaxSpeed = 0f;
+        cinemachineFreeLook.m_YAxis.m_MaxSpeed = 0f;
     }
 }

@@ -7,7 +7,6 @@ using Cinemachine;
 
 public class UIManager : MonoBehaviour
 {
-    [HideInInspector] public bool isPlaying; // From game start to game over 
     [HideInInspector] public AudioSource[] audioList;
     [SerializeField] Slider startAudioController;
     [SerializeField] Slider inGameAudioController;
@@ -36,6 +35,7 @@ public class UIManager : MonoBehaviour
     [SerializeField] Vector3 zoomInRot;
 
     [SerializeField] TerrainMove terrainMove;
+    [SerializeField] PlayerInput playerInput;
 
     static UIManager m_instance;
     public static UIManager instance
@@ -109,7 +109,7 @@ public class UIManager : MonoBehaviour
         raftHpUI.SetActive(true);
         inventory.gameObject.SetActive(true);
         terrainMove.enabled = true;
-        isPlaying = true;
+        AllowPlayerInput(true);
     }
 
     public void SetActiveInGameMenu(bool active)
@@ -117,12 +117,12 @@ public class UIManager : MonoBehaviour
         if (!active)
         {
             Cursor.lockState = CursorLockMode.Locked;
-            Time.timeScale = 1f;
+            AllowPlayerInput(true);
         }
         else
         {
-            Cursor.lockState = CursorLockMode.None;
-            Time.timeScale = 0f;
+            Cursor.lockState = CursorLockMode.Confined;
+            AllowPlayerInput(false);
         }
         inGameMenu.SetActive(active);
     }
@@ -151,8 +151,6 @@ public class UIManager : MonoBehaviour
 
     public void UpdateMouseSensitivityData(float value)
     {
-        cinemachineFreeLook.m_XAxis.m_MaxSpeed = SettingData.instance.defaultMouseSensitivity.x * value;
-        cinemachineFreeLook.m_YAxis.m_MaxSpeed = SettingData.instance.defaultMouseSensitivity.y * value;
         SettingData.instance.mouseSensitivity = value;
     }
 
@@ -164,7 +162,7 @@ public class UIManager : MonoBehaviour
 
     public void SetActiveGameoverUI()
     {
-        isPlaying = false;
+        AllowPlayerInput(false);
         Cursor.lockState = CursorLockMode.None;
         gameoverUI.SetActive(true);
         StartCoroutine(gameoverUIFadeIn());
@@ -194,6 +192,11 @@ public class UIManager : MonoBehaviour
     {
         Time.timeScale = 1f;
         UILoading.instance.LoadScene("Main", false);
+    }
+
+    public void AllowPlayerInput(bool allow)
+    {
+        playerInput.enabled = allow;
     }
 
     public void AcquireItem(Item _item)

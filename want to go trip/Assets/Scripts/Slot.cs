@@ -11,7 +11,7 @@ public class Slot : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHand
     public Image itemImage;
     public int itemCount;
     [SerializeField] TextMeshProUGUI textCount;
-    [SerializeField] Transform player;
+    [SerializeField] PlayerInput playerInput;
     [HideInInspector] public Transform[] equipments;
     Image slotImage;
 
@@ -98,7 +98,7 @@ public class Slot : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHand
 
     public void OnBeginDrag(PointerEventData eventData)
     {
-        if (item != null && transform.parent.gameObject.activeSelf)
+        if (item != null && transform.parent.gameObject.activeSelf && playerInput.isActiveAndEnabled)
         {
             SlotToDrag.instance.BeginMove(this, itemImage);
             SlotToDrag.instance.transform.position = eventData.position;
@@ -128,7 +128,7 @@ public class Slot : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHand
                 }
             }
             // Drop item
-            Instantiate(item.itemObj, player.position + player.forward * 3f + Vector3.up * 1.5f, Quaternion.identity);
+            Instantiate(item.itemObj, playerInput.transform.position + playerInput.transform.forward * 3f + Vector3.up * 1.5f, Quaternion.identity);
             DecreaseItemCount();
         }
         SlotToDrag.instance.EndMove();
@@ -160,21 +160,8 @@ public class Slot : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHand
 
     IEnumerator EmphasizeSlot(float r, float g, float b)
     {
-        // Change color
-        Color color = slotImage.color;
-        float tmpR = color.r;
-        float tmpG = color.g;
-        float tmpB = color.b;
-        color.r = r;
-        color.g = g;
-        color.b = b;
-        slotImage.color = color;
-        
-        // Return original color
+        slotImage.color = new Color(r, g, b);
         yield return new WaitForSeconds(0.2f);
-        color.r = tmpR;
-        color.g = tmpG;
-        color.b = tmpB;
-        slotImage.color = color;
+        slotImage.color = new Color(0.5f, 0.5f, 0.5f);
     }
 }

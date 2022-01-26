@@ -8,7 +8,6 @@ using Cinemachine;
 
 public class UIInGameMenu : MonoBehaviour
 {
-    [SerializeField] PlayerInput playerInput;
     [SerializeField] GameObject menu;
     [SerializeField] GameObject setting;
     [SerializeField] TextMeshProUGUI volumeRate;
@@ -17,7 +16,7 @@ public class UIInGameMenu : MonoBehaviour
     void Update()
     {
         // Open and close in-game menu
-        if (playerInput.esc)
+        if (Input.GetKeyDown(KeyCode.Escape))
         {
             if (menu.activeSelf)
             {
