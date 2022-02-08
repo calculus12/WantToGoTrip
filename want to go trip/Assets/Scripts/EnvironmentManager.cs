@@ -4,15 +4,27 @@ using UnityEngine;
 
 public class EnvironmentManager : MonoBehaviour
 {
+    static EnvironmentManager m_instance;
+
     public Vector3 birdPosMin;
     public Vector3 birdPosMax;
-
     [SerializeField] float birdSpawnIntervalMin;
     [SerializeField] float birdSpawnIntervalMax;
     [SerializeField] GameObject[] birds;
-    static EnvironmentManager m_instance;
     Queue<GameObject>[] birdPool;
     Dictionary<GameObject, int> getBirdPoolIdx;
+
+    public static EnvironmentManager instance
+    {
+        get
+        {
+            if (m_instance == null)
+            {
+                m_instance = FindObjectOfType<EnvironmentManager>();
+            }
+            return m_instance;
+        }
+    }
 
     void Awake()
     {
@@ -43,17 +55,7 @@ public class EnvironmentManager : MonoBehaviour
         ActivateBird();
     }
 
-    public static EnvironmentManager instance
-    {
-        get
-        {
-            if (m_instance == null)
-            {
-                m_instance = FindObjectOfType<EnvironmentManager>();
-            }
-            return m_instance;
-        }
-    }
+    
 
     public void ActivateBird()
     {

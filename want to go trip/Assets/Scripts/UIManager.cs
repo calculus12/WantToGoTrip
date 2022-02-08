@@ -21,6 +21,7 @@ public class UIManager : MonoBehaviour
     [SerializeField] GameObject playerHpUI;
     [SerializeField] GameObject raftHpUI;
     [SerializeField] Inventory inventory;
+    [SerializeField] GameObject randObjGenerator;
     [SerializeField] Image playerHealthSlider;
     [SerializeField] Image playerOxygenSlider;
     [SerializeField] Image raftHealthSlider;
@@ -106,6 +107,7 @@ public class UIManager : MonoBehaviour
         playerHpUI.SetActive(true);
         raftHpUI.SetActive(true);
         inventory.gameObject.SetActive(true);
+        randObjGenerator.SetActive(true);
         isPlaying = true;
     }
 
