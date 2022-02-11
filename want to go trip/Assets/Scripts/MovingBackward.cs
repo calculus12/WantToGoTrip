@@ -6,11 +6,11 @@ using UnityEngine;
 public class MovingBackward : MonoBehaviour
 {
     public float speed;
-    RandObjGenerator randObjGenerator;
+    RockGenerator randObjGenerator;
     
     public void Awake()
     {
-        randObjGenerator = FindObjectOfType<RandObjGenerator>();
+        randObjGenerator = FindObjectOfType<RockGenerator>();
     }
 
     public void Update()
