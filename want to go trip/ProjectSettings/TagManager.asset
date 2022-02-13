@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Dead
   - Raft
+  - Rope_Part
   layers:
   - Default
   - TransparentFX
@@ -16,7 +17,7 @@ TagManager:
   - WaterSurface
   - Raft
   - Player
-  - 
+  - Wood
   - 
   - 
   - 

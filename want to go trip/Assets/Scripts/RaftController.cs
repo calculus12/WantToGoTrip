@@ -38,7 +38,7 @@ public class RaftController : MonoBehaviour
         if (Mathf.Abs(velocity.magnitude) >= forwardVelocity / 2)
             targetVelocity = Vector3.zero;
         velocity = Vector3.Lerp(velocity, targetVelocity, Time.deltaTime * damping);
-        raftTransform.position += velocity * Time.deltaTime; // move forward;
+        raftTransform.position += velocity * Time.deltaTime; // move forward
 
         if (!playerState.isSailing)
         {

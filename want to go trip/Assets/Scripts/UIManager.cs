@@ -21,6 +21,7 @@ public class UIManager : MonoBehaviour
     [SerializeField] GameObject playerHpUI;
     [SerializeField] GameObject raftHpUI;
     [SerializeField] Inventory inventory;
+    [SerializeField] GameObject woodUI;
     [SerializeField] Image playerHealthSlider;
     [SerializeField] Image playerOxygenSlider;
     [SerializeField] Image raftHealthSlider;
@@ -159,12 +160,22 @@ public class UIManager : MonoBehaviour
         UILoading.instance.LoadScene("Main", true);
     }
 
+    public void SetActiveWoodUI(bool active)
+    {
+        woodUI.SetActive(active);
+    }
+
     public void SetActiveGameoverUI()
     {
         isPlaying = false;
         Cursor.lockState = CursorLockMode.None;
         gameoverUI.SetActive(true);
         StartCoroutine(gameoverUIFadeIn());
+    }
+
+    public void AddScore(float score)
+    {
+        GameManager.instance.score += score;
     }
 
     IEnumerator gameoverUIFadeIn()
