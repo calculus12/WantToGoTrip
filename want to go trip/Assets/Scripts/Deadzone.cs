@@ -2,15 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Deadzone : RaftHealth
+public class Deadzone: MonoBehaviour
 {
-
+    [SerializeField] RaftHealth raftHealth;
     // Update is called once per frame
     private void OnTriggerEnter(Collider other)
     {
-        if(other.tag == "Dead" && !dead)
+        if (other.tag == "Dead")
         {
-            OnDamage(100f);
+            raftHealth.OnDamage(raftHealth.startingHealth);
         }
     }
 }

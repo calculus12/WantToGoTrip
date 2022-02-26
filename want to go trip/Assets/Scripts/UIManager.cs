@@ -20,6 +20,7 @@ public class UIManager : MonoBehaviour
     [SerializeField] GameObject gameoverUI;
     [SerializeField] GameObject playerHpUI;
     [SerializeField] GameObject raftHpUI;
+    [SerializeField] GameObject nearDeadzoneUI;
     [SerializeField] Inventory inventory;
     [SerializeField] Image playerHealthSlider;
     [SerializeField] Image playerOxygenSlider;
@@ -165,6 +166,10 @@ public class UIManager : MonoBehaviour
         Cursor.lockState = CursorLockMode.None;
         gameoverUI.SetActive(true);
         StartCoroutine(gameoverUIFadeIn());
+    }
+    public void SetDeadzoneAlarmUI()
+    {
+
     }
 
     IEnumerator gameoverUIFadeIn()

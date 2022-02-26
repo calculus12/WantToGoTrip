@@ -5,11 +5,11 @@ using UnityEngine;
 
 public class MovingBackward : MonoBehaviour
 {
-    public float speed;
+    public float rockspeed;
     
     public void Update()
     {
-        transform.position += Vector3.back * speed * Time.deltaTime;
+        transform.Translate(Vector3.back * rockspeed * Time.deltaTime);
     }
 }
    

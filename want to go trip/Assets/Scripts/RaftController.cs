@@ -16,11 +16,14 @@ public class RaftController : MonoBehaviour
     public float sailingTime = 0.5f;
     public float rotationUnit = 5f;
     public float rotationSpeed = 1f;
+    public float speed;
+    public float backwardSpeed=10f;
 
     public static Vector3 velocity; //raft's velocity
     private float timeAfterOneSailing = 0f;
     private Vector3 targetAngle = Vector3.zero;
     private Vector3 targetVelocity;
+    private Vector3 Velocity; //raft's forward velocity
 
     private void Start()
     {
@@ -30,14 +33,16 @@ public class RaftController : MonoBehaviour
 
     private void Update()
     {
+        // 자동으로 뒤로 가는 기능
         // rotate raft
         raftTransform.rotation = Quaternion.Slerp(raftTransform.rotation, Quaternion.Euler(targetAngle)
             , Time.deltaTime * rotationSpeed);
 
         // move raft forward
-        if (Mathf.Abs(velocity.magnitude) >= forwardVelocity / 2)
+        if (Mathf.Abs(Velocity.magnitude) >= forwardVelocity / 2)
             targetVelocity = Vector3.zero;
-        velocity = Vector3.Lerp(velocity, targetVelocity, Time.deltaTime * damping);
+        Velocity = Vector3.Lerp(Velocity, targetVelocity, Time.deltaTime * damping);
+        velocity = Vector3.back * backwardSpeed + Velocity;
         raftTransform.position += velocity * Time.deltaTime; // move forward;
 
         if (!playerState.isSailing)
@@ -78,6 +83,8 @@ public class RaftController : MonoBehaviour
         //raftTransform.position += velocity * Time.deltaTime;
 
         PlayerTransform.SetPositionAndRotation(raftTransform.position, raftTransform.rotation);
+
+
     }
 
 }
