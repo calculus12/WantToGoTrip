@@ -20,7 +20,6 @@ public class ItemDetect : MonoBehaviour
         Collider[] nearWoods = Physics.OverlapSphere(detectTransform.position, 1f, woodLayer);
         if (nearWoods.Length > 0) // detect wood
         {
-            Debug.Log(nearWoods.Length);
             wood = nearWoods[0].GetComponent<WoodInteract>();
             UIManager.instance.SetActiveWoodUI(true);
         }

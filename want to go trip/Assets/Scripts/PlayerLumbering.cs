@@ -13,25 +13,22 @@ public class PlayerLumbering : MonoBehaviour
     public float damage = 30;
     public float lumberingTime = 1f;
     public float axeDistance = 0.3f;
-    
-    void Start()
-    {
 
-    }
-
+    private bool isLumbering = false;
 
     void Update()
     {
         if (input.leftClick)
         {
-            if (!state.isLumbering)
+            if (!isLumbering)
                 StartCoroutine(LumberRoutine());
         }
     }
 
     private IEnumerator LumberRoutine()
     {
-        state.isLumbering = true;
+        isLumbering = true;
+        state.canNotChangeEquipment = true;
         animator.SetTrigger("lumber");
 
         yield return new WaitForSeconds(0.4f);
@@ -50,6 +47,7 @@ public class PlayerLumbering : MonoBehaviour
             }
         }
         yield return new WaitForSeconds(lumberingTime);
-        state.isLumbering = false;
+        state.canNotChangeEquipment = false;
+        isLumbering = false;
     }
 }

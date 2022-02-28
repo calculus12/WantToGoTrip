@@ -22,6 +22,7 @@ public class UIManager : MonoBehaviour
     [SerializeField] GameObject raftHpUI;
     [SerializeField] Inventory inventory;
     [SerializeField] GameObject woodUI;
+    [SerializeField] GameObject crashUI;
     [SerializeField] Image playerHealthSlider;
     [SerializeField] Image playerOxygenSlider;
     [SerializeField] Image raftHealthSlider;
@@ -163,6 +164,11 @@ public class UIManager : MonoBehaviour
     public void SetActiveWoodUI(bool active)
     {
         woodUI.SetActive(active);
+    }
+
+    public void SetActiveCrashUI(bool active)
+    {
+        crashUI.SetActive(active);
     }
 
     public void SetActiveGameoverUI()

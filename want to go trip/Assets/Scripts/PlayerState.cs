@@ -38,7 +38,9 @@ public class PlayerState : MonoBehaviour
     
     public bool isSailing { get; set; }
 
-    public bool isLumbering { get; set; }
+    public bool canNotMove{ get; set; } // fixing, fishing etc..
+
+    public bool canNotChangeEquipment { get; set; } // sailing, lumbering etc..
 
     public bool isSubmerging { get; private set; }
 

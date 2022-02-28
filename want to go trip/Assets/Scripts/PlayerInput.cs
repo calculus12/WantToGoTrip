@@ -11,6 +11,7 @@ public class PlayerInput : MonoBehaviour // Manage player's input
     public float vertical { get; private set; }
     public bool space { get; private set; }
     public bool f { get; private set; }
+    public bool presingF { get; private set; }
     public bool ctrl { get; private set; }
     public bool leftClick { get; private set; }
     public bool w { get; private set; }
@@ -52,6 +53,7 @@ public class PlayerInput : MonoBehaviour // Manage player's input
             space = Input.GetButton("Jump");
             ctrl = Input.GetKey(KeyCode.LeftControl);
             f = Input.GetKeyDown(KeyCode.F);
+            presingF = Input.GetKey(KeyCode.F);
             w = Input.GetKeyDown(KeyCode.W);
             a = Input.GetKeyDown(KeyCode.A);
             d = Input.GetKeyDown(KeyCode.D);

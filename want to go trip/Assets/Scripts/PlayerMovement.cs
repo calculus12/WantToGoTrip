@@ -59,6 +59,7 @@ public class PlayerMovement : MonoBehaviour
     void Update()
     {
         moveVector = Vector3.zero;
+        Vector3 direction = new Vector3();
 
         if (state.isSailing)
         {
@@ -72,8 +73,10 @@ public class PlayerMovement : MonoBehaviour
 
         }
 
-
-        Vector3 direction = new Vector3(input.horizontal, 0f, input.vertical).normalized;
+        if (!state.canNotMove)
+        {
+            direction = new Vector3(input.horizontal, 0f, input.vertical).normalized;
+        }
 
         if (state.isOnRaft || state.isGrounded)
         {
