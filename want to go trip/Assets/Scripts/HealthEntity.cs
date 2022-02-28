@@ -44,7 +44,8 @@ public class HealthEntity : MonoBehaviour, IDamageable
             return;
         }
 
-        health += restoreHealth;
+        // 최대 체력 이상 회복 불가
+        health = Math.Min(health + restoreHealth, startingHealth);
     }
 
     public virtual void Die()

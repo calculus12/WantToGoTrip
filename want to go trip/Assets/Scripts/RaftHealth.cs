@@ -5,7 +5,7 @@ using UnityEngine;
 public class RaftHealth : HealthEntity
 {
     public AudioClip collisionSound;
-
+    private CrashManager crashManager;
     private AudioSource raftAudioPlayer;
 
     private void Start()
@@ -20,7 +20,7 @@ public class RaftHealth : HealthEntity
     protected override void OnEnable()
     {
         base.OnEnable();
-
+        crashManager = GetComponent<CrashManager>();
         UIManager.instance.UpdateRaftHealth(health /startingHealth);
     }
 
@@ -31,5 +31,6 @@ public class RaftHealth : HealthEntity
             raftAudioPlayer.PlayOneShot(collisionSound, 0.5f);
         }
         base.OnDamage(damage);
+        crashManager.Generate();
     }
 }

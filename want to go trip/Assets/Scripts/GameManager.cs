@@ -24,7 +24,7 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    private float score = 0;
+    public float score = 0;
     public bool isGameover { get; private set; }
 
     private void Start()
