@@ -6,12 +6,12 @@ using UnityEngine;
 public class PlayerHealth : HealthEntity
 {
     public AudioClip hitSound;
-    public AudioClip deathSound;   
+    public AudioClip deathSound;
     public float oxygen { get; set; }
     public float oxygenTime = 20f;
     public float startingOxygen = 100f;
-    public float oxygenRecoverySpeed = 10f;
-    public float oxygenDecreaseSpeed = 4f;
+    public float oxygenRecoverySpeed = 6f;
+    public float oxygenDecreaseSpeed = 2f;
     public float healthDecreasingByNoOxygen = 3f;
     public SailingControl sailing;
 
@@ -54,7 +54,7 @@ public class PlayerHealth : HealthEntity
             OnDamage(Time.deltaTime * healthDecreasingByNoOxygen);
         }
 
-        if (state.isSubmerging)
+        if (state.isSubmerging || state.isSurface || state.isUnderwater)
         {
             oxygen = Mathf.Clamp(oxygen - Time.deltaTime * oxygenDecreaseSpeed, 0, startingOxygen);
         }
@@ -69,7 +69,6 @@ public class PlayerHealth : HealthEntity
     public override void RestoreHealth(float restoreHealth)
     {
         base.RestoreHealth(restoreHealth);
-
     }
 
     public override void Die()
